@@ -11,8 +11,16 @@ type NewDeckData = {
   remaining: number;
 };
 
-export function createDeck(): Promise<NewDeckData> {
-  return api.get('/deck/new').then(({ data }) => data);
+export function createDeck(cards: string[]): Promise<NewDeckData> {
+  return api
+    .get(`/deck/new/?cards=${cards.join()}`)
+    .then(({ data }) => data);
+}
+
+export function drawCards(deckId: string, count: number) {
+  return api
+    .get(`/deck/${deckId}/draw/?count=${count}`)
+    .then(data => data);
 }
 
 export function createPile(

@@ -54,3 +54,25 @@ export const cards = [
   '4S',
   '3S',
 ];
+
+export const SUITS_TOTAL = 4;
+
+export const suits = ['H', 'D', 'C', 'S'];
+
+export const VALUES_TOTAL = 13;
+
+export const values = [
+  '2',
+  'A',
+  'K',
+  'Q',
+  'J',
+  '10',
+  '9',
+  '8',
+  '7',
+  '6',
+  '5',
+  '4',
+  '3',
+];
