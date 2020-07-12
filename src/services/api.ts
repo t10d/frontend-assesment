@@ -1,17 +1,18 @@
 import axios from 'axios';
+import { AsyncOptions } from 'react-async';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
-type NewDeckData = {
+type CreateDeckData = {
   success: boolean;
   deck_id: string;
   shuffled: boolean;
   remaining: number;
 };
 
-export function createDeck(cards: string[]): Promise<NewDeckData> {
+export function createDeck(cards: string[]): Promise<CreateDeckData> {
   return api
     .get(`/deck/new/?cards=${cards.join()}`)
     .then(({ data }) => data);
@@ -31,4 +32,32 @@ export function createPile(
   return api
     .get(`/deck/${deckId}/pile/${pileName}/add/?cards=${cards.join()}`)
     .then(data => data);
+}
+
+type Cards = {
+  code: string;
+  image: string;
+  images: { svg: string; png: string };
+  value: string;
+  suit: string;
+};
+
+export type PileCardsData = {
+  success: boolean;
+  deck_id: string;
+  remaining: number;
+  piles: {
+    cards: {
+      remaining: number;
+      cards: Cards[];
+    };
+  };
+};
+
+export function getPileCards(props: AsyncOptions<PileCardsData>) {
+  const { deckId, pileName } = props;
+
+  return api
+    .get(`/deck/${deckId}/pile/${pileName}/list`)
+    .then(({ data }) => data);
 }

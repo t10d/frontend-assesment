@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from 'formik';
 import { createDeck, createPile, drawCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
+import { getSuitAndValueFromCard } from '../../utils/fns';
 import {
   cards,
   initialCards,
@@ -42,17 +43,15 @@ function generateValueRank(rotationCardValue: string) {
 }
 
 function sortCards(cards: string[], rotationCard: string) {
-  const rotationCardSuit = rotationCard.slice(-1);
-  const rotationCardValue = rotationCard.slice(0, rotationCard.length - 1);
+  const [rotationCardSuit, rotationCardValue] = getSuitAndValueFromCard(
+    rotationCard,
+  );
   const suitRankMap = generateSuitRank(rotationCardSuit);
   const valueRankMap = generateValueRank(rotationCardValue);
 
   function compare(a: string, b: string) {
-    const valueA = a.slice(0, a.length - 1);
-    const suitA = a.slice(-1);
-    const valueB = b.slice(0, b.length - 1);
-    const suitB = b.slice(-1);
-
+    const [suitA, valueA] = getSuitAndValueFromCard(a);
+    const [suitB, valueB] = getSuitAndValueFromCard(b);
     const suitRankA = suitRankMap.get(suitA) ?? 0;
     const suitRankB = suitRankMap.get(suitB) ?? 0;
     const valueRankA = valueRankMap.get(valueA) ?? 0;

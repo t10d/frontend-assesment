@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import DeckForm from './pages/deck-form/DeckForm';
-import DeckInfo from './pages/DeckInfo';
+import DeckInfo from './pages/deck-info/DeckInfo';
 
 export default function App() {
   return (
