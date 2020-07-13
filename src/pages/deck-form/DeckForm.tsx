@@ -230,6 +230,7 @@ export default function DeckForm(props: DeckFormProps) {
                             <label>
                               <Input
                                 type="text"
+                                data-testid="card-input"
                                 placeholder={`Card ${index + 1}`}
                                 sx={{
                                   fontFamily: 'Inter',
@@ -245,7 +246,11 @@ export default function DeckForm(props: DeckFormProps) {
                       </label>
                       <ErrorMessage name={`cards[${index}]`}>
                         {message => (
-                          <Text color="red.7" sx={{ fontSize: 0 }}>
+                          <Text
+                            color="red.7"
+                            sx={{ fontSize: 0 }}
+                            data-testid={`card-${index + 1}-error-message`}
+                          >
                             {message}
                           </Text>
                         )}
@@ -266,7 +271,10 @@ export default function DeckForm(props: DeckFormProps) {
                         display: 'inline-flex',
                       }}
                     >
-                      <AlertIcon /> <Text ml={2}>{message}</Text>
+                      <AlertIcon />
+                      <Text ml={2} data-testid="card-fields-error-message">
+                        {message}
+                      </Text>
                     </Badge>
                   )}
                 </ErrorMessage>
@@ -301,7 +309,11 @@ export default function DeckForm(props: DeckFormProps) {
                   </Field>
                   <ErrorMessage name="rotationCard">
                     {message => (
-                      <Text color="red.7" sx={{ fontSize: 0 }}>
+                      <Text
+                        color="red.7"
+                        sx={{ fontSize: 0 }}
+                        data-testid="rotation-card-error-message"
+                      >
                         {message}
                       </Text>
                     )}
@@ -335,7 +347,9 @@ export default function DeckForm(props: DeckFormProps) {
                     {formikBag.isSubmitting ? (
                       <Spinner color="white" size={26} />
                     ) : (
-                      <Text sx={{ fontFamily: 'Inter' }}>Submit</Text>
+                      <Text as="span" sx={{ fontFamily: 'Inter' }}>
+                        Submit
+                      </Text>
                     )}
                   </Button>
                 </Box>
