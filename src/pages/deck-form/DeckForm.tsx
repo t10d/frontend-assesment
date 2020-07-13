@@ -1,6 +1,26 @@
-import * as React from 'react';
+/** @jsx jsx */
+import {
+  jsx,
+  Box,
+  Grid,
+  Text,
+  Button,
+  Input,
+  Divider,
+  Spinner,
+  Badge,
+  useThemeUI,
+} from 'theme-ui';
+import {
+  ErrorMessage,
+  Field,
+  FieldProps,
+  Form,
+  Formik,
+  FormikErrors,
+} from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
-import { ErrorMessage, Field, Form, Formik, FormikErrors } from 'formik';
+import Layout from '../../components/layout/Layout';
 import { createDeck, createPile, drawCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
 import { getSuitAndValueFromCard } from '../../utils/fns';
@@ -12,9 +32,15 @@ import {
   values,
   VALUES_TOTAL,
 } from './DeckForm.content';
+import AlertIcon from '../../components/alert-icon/AlertIcon';
 
 type DeckFormProps = RouteComponentProps;
-type FormValues = { cards: string[]; rotationCard: string };
+
+type FormValues = {
+  cards: string[];
+  rotationCard: string;
+  cardFieldsValidation: boolean;
+};
 
 function generateSuitRank(rotationCardSuit: string) {
   const suitIndex = suits.indexOf(rotationCardSuit);
@@ -84,32 +110,53 @@ function sortCards(cards: string[], rotationCard: string) {
 }
 
 export default function DeckForm(props: DeckFormProps) {
+  const { theme } = useThemeUI();
+
   function onValidate(values: FormValues): FormikErrors<FormValues> {
-    const errors = { cards: initialCards, rotationCard: '' };
-    let hasError = false;
+    const errors = {
+      cards: initialCards,
+      rotationCard: '',
+      cardFieldsValidation: '',
+    };
+    const set = new Set<string>();
+    let hasCardFieldsError = true;
+    let hasFieldError = false;
 
     values.cards.forEach((card, index) => {
-      if (card && cards.indexOf(card) === -1) {
-        errors.cards[index] = `${card} não é uma carta válida`;
-        hasError = true;
-      } else {
-        errors.cards[index] = '';
+      if (card) {
+        hasCardFieldsError = false;
+        if (set.has(card)) {
+          errors.cards[index] = `${card} has already been inserted`;
+          hasFieldError = true;
+        } else if (cards.indexOf(card) === -1) {
+          errors.cards[index] = `${card} is not a valid card`;
+          hasFieldError = true;
+        } else {
+          errors.cards[index] = '';
+        }
+        set.add(card);
       }
     });
 
+    if (hasCardFieldsError) {
+      errors.cardFieldsValidation = 'Insert at least one valid card';
+    } else {
+      errors.cardFieldsValidation = '';
+    }
+
     if (values.rotationCard) {
       if (cards.indexOf(values.rotationCard) === -1) {
-        errors.rotationCard = `${values.rotationCard} não é uma carta válida`;
-        hasError = true;
+        errors.rotationCard = `${values.rotationCard} is not a valid card`;
+        hasFieldError = true;
       } else {
         errors.rotationCard = '';
       }
     } else {
       errors.rotationCard = 'Rotation card is required';
-      hasError = true;
+      hasFieldError = true;
     }
 
-    return hasError ? errors : {};
+    return hasFieldError || hasCardFieldsError ? errors : {};
   }
 
   async function onSubmit(values: FormValues) {
@@ -129,30 +176,155 @@ export default function DeckForm(props: DeckFormProps) {
   }
 
   return (
-    <div>
-      Cards
-      <Formik
-        initialValues={{ cards: initialCards, rotationCard: '' }}
-        validate={onValidate}
-        onSubmit={onSubmit}
+    <Layout>
+      <Box
+        my={4}
+        p={4}
+        sx={{
+          border: '1px solid',
+          borderColor: 'gray.3',
+          borderRadius: 'default',
+        }}
       >
-        {formikBag => (
-          <Form>
-            {formikBag.values.cards.map((_, index) => (
-              <div key={`card-${index}`}>
-                <label>
-                  <Field name={`cards[${index}]`} />
-                </label>
-                <ErrorMessage name={`cards[${index}]`} />
-              </div>
-            ))}
-            <label htmlFor="rotationCard">Rotation Card</label>
-            <Field id="rotationCard" name="rotationCard" />
-            <ErrorMessage name="rotationCard" />
-            <button type="submit">Submit</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+        <Box mb={4}>
+          <Text sx={{ fontSize: 2 }}>Cards</Text>
+          <Text color="gray.6" sx={{ fontSize: 0 }} mt={-1}>
+            These should be 10 valid cards, at most, from a common deck
+          </Text>
+        </Box>
+        <Formik
+          initialValues={{
+            cards: initialCards,
+            rotationCard: '',
+            cardFieldsValidation: true,
+          }}
+          validate={onValidate}
+          onSubmit={onSubmit}
+        >
+          {formikBag => (
+            <Form>
+              <Grid gap={[3, 4]} columns={[1, 3, 4, 5]} mb={4}>
+                {formikBag.values.cards.map((_, index) => (
+                  <Box key={`card-${index}`}>
+                    <label>
+                      <Field name={`cards[${index}]`}>
+                        {({ field }: FieldProps) => (
+                          <label>
+                            <Input
+                              type="text"
+                              placeholder={`Card ${index + 1}`}
+                              sx={{
+                                fontFamily: 'Inter',
+                                '::placeholder': {
+                                  fontSize: 0,
+                                },
+                              }}
+                              {...field}
+                            />
+                          </label>
+                        )}
+                      </Field>
+                    </label>
+                    <ErrorMessage name={`cards[${index}]`}>
+                      {message => (
+                        <Text color="red.7" sx={{ fontSize: 0 }}>
+                          {message}
+                        </Text>
+                      )}
+                    </ErrorMessage>
+                  </Box>
+                ))}
+              </Grid>
+              <ErrorMessage name="cardFieldsValidation">
+                {message => (
+                  <Badge
+                    bg="red.1"
+                    color="red.6"
+                    px={3}
+                    py={1}
+                    sx={{
+                      borderRadius: 'full',
+                      fontSize: 0,
+                      display: 'inline-flex',
+                    }}
+                  >
+                    <AlertIcon /> <Text ml={2}>{message}</Text>
+                  </Badge>
+                )}
+              </ErrorMessage>
+              <Divider />
+              <Box mb={4}>
+                <Text sx={{ fontSize: 2 }}>Rotation Card</Text>
+                <Text color="gray.6" sx={{ fontSize: 0 }} mt={-1}>
+                  This card defines the highest value card in the deck
+                </Text>
+              </Box>
+              <Box
+                pt={1}
+                mb={4}
+                sx={{ width: ['100%', '50%', '40%', '30%'] }}
+              >
+                <Field name="rotationCard">
+                  {({ field }: FieldProps) => (
+                    <label>
+                      <Input
+                        type="text"
+                        placeholder="Rotation card"
+                        sx={{
+                          fontFamily: 'Inter',
+                          '::placeholder': {
+                            fontSize: 0,
+                          },
+                        }}
+                        {...field}
+                      />
+                    </label>
+                  )}
+                </Field>
+                <ErrorMessage name="rotationCard">
+                  {message => (
+                    <Text color="red.7" sx={{ fontSize: 0 }}>
+                      {message}
+                    </Text>
+                  )}
+                </ErrorMessage>
+              </Box>
+              <Divider />
+              <Box pt={2}>
+                <Button
+                  type="submit"
+                  disabled={formikBag.isSubmitting}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: ['full', 32],
+                    cursor: 'pointer',
+                    ':hover': {
+                      backgroundColor: 'primaryHover',
+                      boxShadow: 'lg',
+                    },
+                    ':focus': {
+                      outline: 'none',
+                      boxShadow: `0 0 0 3px ${
+                        (theme.colors as typeof theme.colors & {
+                          blue: string[];
+                        }).blue[2]
+                      }`,
+                      borderColor: 'purple.2',
+                    },
+                  }}
+                >
+                  {formikBag.isSubmitting ? (
+                    <Spinner color="white" size={26} />
+                  ) : (
+                    <Text sx={{ fontFamily: 'Inter' }}>Submit</Text>
+                  )}
+                </Button>
+              </Box>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+    </Layout>
   );
 }
