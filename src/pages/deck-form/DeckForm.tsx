@@ -25,6 +25,7 @@ import { toast } from 'react-toastify';
 import { RouteComponentProps } from 'react-router-dom';
 import Layout from '../../components/layout/Layout';
 import AlertIcon from '../../components/alert-icon/AlertIcon';
+import ErrorBoundary from '../../components/ErrorBoundary';
 import { createDeck, createPile, drawCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
 import { getSuitAndValueFromCard } from '../../utils/fns';
@@ -192,155 +193,157 @@ export default function DeckForm(props: DeckFormProps) {
   }
 
   return (
-    <Layout>
-      <Box
-        my={4}
-        p={4}
-        sx={{
-          border: '1px solid',
-          borderColor: 'gray.3',
-          borderRadius: 'default',
-        }}
-      >
-        <Box mb={4}>
-          <Text sx={{ fontSize: 2 }}>Cards</Text>
-          <Text color="gray.6" sx={{ fontSize: 0 }} mt={-1}>
-            These should be 10 valid cards, at most, from a common deck
-          </Text>
-        </Box>
-        <Formik
-          initialValues={{
-            cards: initialCards,
-            rotationCard: '',
-            cardFieldsValidation: true,
+    <ErrorBoundary>
+      <Layout>
+        <Box
+          my={4}
+          p={4}
+          sx={{
+            border: '1px solid',
+            borderColor: 'gray.3',
+            borderRadius: 'default',
           }}
-          validate={onValidate}
-          onSubmit={onSubmit}
         >
-          {formikBag => (
-            <Form>
-              <Grid gap={[3, 4]} columns={[1, 3, 4, 5]} mb={4}>
-                {formikBag.values.cards.map((_, index) => (
-                  <Box key={`card-${index}`}>
-                    <label>
-                      <Field name={`cards[${index}]`}>
-                        {({ field }: FieldProps) => (
-                          <label>
-                            <Input
-                              type="text"
-                              placeholder={`Card ${index + 1}`}
-                              sx={{
-                                fontFamily: 'Inter',
-                                '::placeholder': {
-                                  fontSize: 0,
-                                },
-                              }}
-                              {...field}
-                            />
-                          </label>
+          <Box mb={4}>
+            <Text sx={{ fontSize: 2 }}>Cards</Text>
+            <Text color="gray.6" sx={{ fontSize: 0 }} mt={-1}>
+              These should be 10 valid cards, at most, from a common deck
+            </Text>
+          </Box>
+          <Formik
+            initialValues={{
+              cards: initialCards,
+              rotationCard: '',
+              cardFieldsValidation: true,
+            }}
+            validate={onValidate}
+            onSubmit={onSubmit}
+          >
+            {formikBag => (
+              <Form>
+                <Grid gap={[3, 4]} columns={[1, 3, 4, 5]} mb={4}>
+                  {formikBag.values.cards.map((_, index) => (
+                    <Box key={`card-${index}`}>
+                      <label>
+                        <Field name={`cards[${index}]`}>
+                          {({ field }: FieldProps) => (
+                            <label>
+                              <Input
+                                type="text"
+                                placeholder={`Card ${index + 1}`}
+                                sx={{
+                                  fontFamily: 'Inter',
+                                  '::placeholder': {
+                                    fontSize: 0,
+                                  },
+                                }}
+                                {...field}
+                              />
+                            </label>
+                          )}
+                        </Field>
+                      </label>
+                      <ErrorMessage name={`cards[${index}]`}>
+                        {message => (
+                          <Text color="red.7" sx={{ fontSize: 0 }}>
+                            {message}
+                          </Text>
                         )}
-                      </Field>
-                    </label>
-                    <ErrorMessage name={`cards[${index}]`}>
-                      {message => (
-                        <Text color="red.7" sx={{ fontSize: 0 }}>
-                          {message}
-                        </Text>
-                      )}
-                    </ErrorMessage>
-                  </Box>
-                ))}
-              </Grid>
-              <ErrorMessage name="cardFieldsValidation">
-                {message => (
-                  <Badge
-                    bg="red.1"
-                    color="red.6"
-                    px={3}
-                    py={1}
-                    sx={{
-                      borderRadius: 'full',
-                      fontSize: 0,
-                      display: 'inline-flex',
-                    }}
-                  >
-                    <AlertIcon /> <Text ml={2}>{message}</Text>
-                  </Badge>
-                )}
-              </ErrorMessage>
-              <Divider />
-              <Box mb={4}>
-                <Text sx={{ fontSize: 2 }}>Rotation Card</Text>
-                <Text color="gray.6" sx={{ fontSize: 0 }} mt={-1}>
-                  This card defines the highest value card in the deck
-                </Text>
-              </Box>
-              <Box
-                pt={1}
-                mb={4}
-                sx={{ width: ['100%', '50%', '40%', '30%'] }}
-              >
-                <Field name="rotationCard">
-                  {({ field }: FieldProps) => (
-                    <label>
-                      <Input
-                        type="text"
-                        placeholder="Rotation card"
-                        sx={{
-                          fontFamily: 'Inter',
-                          '::placeholder': {
-                            fontSize: 0,
-                          },
-                        }}
-                        {...field}
-                      />
-                    </label>
-                  )}
-                </Field>
-                <ErrorMessage name="rotationCard">
+                      </ErrorMessage>
+                    </Box>
+                  ))}
+                </Grid>
+                <ErrorMessage name="cardFieldsValidation">
                   {message => (
-                    <Text color="red.7" sx={{ fontSize: 0 }}>
-                      {message}
-                    </Text>
+                    <Badge
+                      bg="red.1"
+                      color="red.6"
+                      px={3}
+                      py={1}
+                      sx={{
+                        borderRadius: 'full',
+                        fontSize: 0,
+                        display: 'inline-flex',
+                      }}
+                    >
+                      <AlertIcon /> <Text ml={2}>{message}</Text>
+                    </Badge>
                   )}
                 </ErrorMessage>
-              </Box>
-              <Divider />
-              <Box pt={2}>
-                <Button
-                  type="submit"
-                  disabled={formikBag.isSubmitting}
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: ['full', 32],
-                    cursor: 'pointer',
-                    ':hover': {
-                      backgroundColor: 'primaryHover',
-                      boxShadow: 'lg',
-                    },
-                    ':focus': {
-                      outline: 'none',
-                      boxShadow: `0 0 0 3px ${
-                        (theme.colors as typeof theme.colors & {
-                          blue: string[];
-                        }).blue[2]
-                      }`,
-                      borderColor: 'gray.2',
-                    },
-                  }}
+                <Divider />
+                <Box mb={4}>
+                  <Text sx={{ fontSize: 2 }}>Rotation Card</Text>
+                  <Text color="gray.6" sx={{ fontSize: 0 }} mt={-1}>
+                    This card defines the highest value card in the deck
+                  </Text>
+                </Box>
+                <Box
+                  pt={1}
+                  mb={4}
+                  sx={{ width: ['100%', '50%', '40%', '30%'] }}
                 >
-                  {formikBag.isSubmitting ? (
-                    <Spinner color="white" size={26} />
-                  ) : (
-                    <Text sx={{ fontFamily: 'Inter' }}>Submit</Text>
-                  )}
-                </Button>
-              </Box>
-            </Form>
-          )}
-        </Formik>
-      </Box>
-    </Layout>
+                  <Field name="rotationCard">
+                    {({ field }: FieldProps) => (
+                      <label>
+                        <Input
+                          type="text"
+                          placeholder="Rotation card"
+                          sx={{
+                            fontFamily: 'Inter',
+                            '::placeholder': {
+                              fontSize: 0,
+                            },
+                          }}
+                          {...field}
+                        />
+                      </label>
+                    )}
+                  </Field>
+                  <ErrorMessage name="rotationCard">
+                    {message => (
+                      <Text color="red.7" sx={{ fontSize: 0 }}>
+                        {message}
+                      </Text>
+                    )}
+                  </ErrorMessage>
+                </Box>
+                <Divider />
+                <Box pt={2}>
+                  <Button
+                    type="submit"
+                    disabled={formikBag.isSubmitting}
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      width: ['full', 32],
+                      cursor: 'pointer',
+                      ':hover': {
+                        backgroundColor: 'primaryHover',
+                        boxShadow: 'lg',
+                      },
+                      ':focus': {
+                        outline: 'none',
+                        boxShadow: `0 0 0 3px ${
+                          (theme.colors as typeof theme.colors & {
+                            blue: string[];
+                          }).blue[2]
+                        }`,
+                        borderColor: 'gray.2',
+                      },
+                    }}
+                  >
+                    {formikBag.isSubmitting ? (
+                      <Spinner color="white" size={26} />
+                    ) : (
+                      <Text sx={{ fontFamily: 'Inter' }}>Submit</Text>
+                    )}
+                  </Button>
+                </Box>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      </Layout>
+    </ErrorBoundary>
   );
 }

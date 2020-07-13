@@ -4,6 +4,7 @@ import { useAsync } from 'react-async';
 import { getPileCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
 import { useDeckInfo } from '../../hooks/useDeckInfo';
+import ErrorBoundary from '../../components/ErrorBoundary';
 
 type RouteParams = { deckId: string };
 type DeckInfoProps = RouteComponentProps<RouteParams>;
@@ -16,7 +17,7 @@ export default function DeckInfo(props: DeckInfoProps) {
   const { cards, fullHouseCombinations } = useDeckInfo(data);
 
   return (
-    <div>
+    <ErrorBoundary>
       {isPending ? (
         'loading...'
       ) : (
@@ -30,6 +31,6 @@ export default function DeckInfo(props: DeckInfoProps) {
           <div>Full House Combinations: none</div>
         </React.Fragment>
       )}
-    </div>
+    </ErrorBoundary>
   );
 }
