@@ -1,7 +1,22 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import * as RTL from '@testing-library/react';
-import Providers from '../Providers';
+import { ThemeProvider } from 'theme-ui';
+import theme from '../styles/theme';
+import { ToastContainer } from 'react-toastify';
+
+type ProvidersProps = {
+  children?: React.ReactNode;
+};
+
+function Providers(props: ProvidersProps) {
+  return (
+    <React.Fragment>
+      <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+      <ToastContainer closeButton={false} hideProgressBar />
+    </React.Fragment>
+  );
+}
 
 function customRender(
   ui: React.ReactElement,
