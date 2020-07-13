@@ -3,6 +3,7 @@ import {
   jsx,
   Box,
   Grid,
+  Flex,
   Text,
   Button,
   Input,
@@ -19,8 +20,10 @@ import {
   Formik,
   FormikErrors,
 } from 'formik';
+import { toast } from 'react-toastify';
 import { RouteComponentProps } from 'react-router-dom';
 import Layout from '../../components/layout/Layout';
+import AlertIcon from '../../components/alert-icon/AlertIcon';
 import { createDeck, createPile, drawCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
 import { getSuitAndValueFromCard } from '../../utils/fns';
@@ -32,7 +35,6 @@ import {
   values,
   VALUES_TOTAL,
 } from './DeckForm.content';
-import AlertIcon from '../../components/alert-icon/AlertIcon';
 
 type DeckFormProps = RouteComponentProps;
 
@@ -109,6 +111,15 @@ function sortCards(cards: string[], rotationCard: string) {
   return cards.sort(compare);
 }
 
+const ToastError = () => (
+  <Flex>
+    <AlertIcon />
+    <Text ml={1} data-testid="error-toast">
+      Something went wrong creating deck
+    </Text>
+  </Flex>
+);
+
 export default function DeckForm(props: DeckFormProps) {
   const { theme } = useThemeUI();
 
@@ -171,7 +182,7 @@ export default function DeckForm(props: DeckFormProps) {
 
       props.history.push(`/deck/${data.deck_id}`);
     } catch (e) {
-      console.log(e);
+      toast.error(ToastError);
     }
   }
 
