@@ -20,6 +20,7 @@ import {
   Formik,
   FormikErrors,
 } from 'formik';
+import * as React from 'react';
 import { toast } from 'react-toastify';
 import { RouteComponentProps } from 'react-router-dom';
 import Layout from '../../components/layout/Layout';
@@ -122,6 +123,10 @@ const ToastError = () => (
 
 export default function DeckForm(props: DeckFormProps) {
   const { theme } = useThemeUI();
+
+  React.useEffect(() => {
+    document.title = 'Form • Deck Analyzer';
+  }, []);
 
   function onValidate(values: FormValues): FormikErrors<FormValues> {
     const errors = {
@@ -321,7 +326,7 @@ export default function DeckForm(props: DeckFormProps) {
                           blue: string[];
                         }).blue[2]
                       }`,
-                      borderColor: 'purple.2',
+                      borderColor: 'gray.2',
                     },
                   }}
                 >
