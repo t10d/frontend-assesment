@@ -102,7 +102,8 @@ export default function useDeckInfo(data: PileCardsData | undefined) {
 
   React.useEffect(() => {
     const cardsTotal = cards.length;
-    if (cardsTotal > 0) {
+
+    if (cardsTotal >= 5) {
       const cardsGroup = 5;
       fullHouseCombinationsRef.current = [];
       findFullHouseCombinations(

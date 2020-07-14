@@ -24,7 +24,7 @@ export default function Slider(props: SliderProps) {
         slidesPerView: 8,
       },
       '(min-width: 1024px)': {
-        slidesPerView: 3,
+        slidesPerView: 10,
       },
     },
   });
