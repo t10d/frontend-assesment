@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { NewDeck } from "./app/components/Deck";
 
