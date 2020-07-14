@@ -1,14 +1,15 @@
 /** @jsx jsx */
-import { jsx, Box } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import * as React from 'react';
 import Slider from './Slider';
 import Card from '../card/Card';
+import Layout from '../layout/Layout';
 
 export default {
   title: 'Slider',
   component: Slider,
   decorators: [
-    (storyFn: () => React.ReactNode) => <Box p={2}>{storyFn()}</Box>,
+    (storyFn: () => React.ReactNode) => <Layout>{storyFn()}</Layout>,
   ],
 };
 

@@ -12,13 +12,33 @@ export default function Slider(props: SliderProps) {
   const { children } = props;
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
     mode: 'free',
-    slidesPerView() {
-      return window.innerWidth / 120;
+    slidesPerView: 3,
+    breakpoints: {
+      '(min-width: 460px)': {
+        slidesPerView: 4,
+      },
+      '(min-width: 680px)': {
+        slidesPerView: 6,
+      },
+      '(min-width: 820px)': {
+        slidesPerView: 8,
+      },
+      '(min-width: 1024px)': {
+        slidesPerView: 10,
+      },
     },
   });
 
   return (
-    <Box p={2} bg="gray.1" sx={{ borderRadius: 'sm' }}>
+    <Box
+      p={3}
+      bg="gray.1"
+      sx={{
+        borderRadius: 'default',
+        border: '1px solid',
+        borderColor: 'gray.3',
+      }}
+    >
       <Box ref={sliderRef} className="keen-slider">
         {React.Children.map(children, child => (
           <div className="keen-slider__slide">{child}</div>
