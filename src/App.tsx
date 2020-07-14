@@ -4,7 +4,7 @@ import { NewDeck } from "./app/components/Deck";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Switch>
         <Redirect exact from="/" to="/deck/new" />
         <Route exact path="/deck/new" component={NewDeck} />
