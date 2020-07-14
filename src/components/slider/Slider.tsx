@@ -8,6 +8,20 @@ type SliderProps = {
   children: React.ReactNode[];
 };
 
+const containerMaxWidth = [
+  'full',
+  '8rem',
+  '14rem',
+  '20rem',
+  '26rem',
+  '32rem',
+  '38rem',
+  '44rem',
+  '50rem',
+  '56rem',
+  '62rem',
+];
+
 export default function Slider(props: SliderProps) {
   const { children } = props;
   const [sliderRef, keenSlider] = useKeenSlider<HTMLDivElement>({
@@ -35,19 +49,25 @@ export default function Slider(props: SliderProps) {
     }
   }, [keenSlider]);
 
+  const childrenCount = React.Children.count(children);
+
   return (
     <Box
       p={3}
+      mx="auto"
       bg="gray.1"
       sx={{
+        maxWidth: containerMaxWidth[childrenCount],
         borderRadius: 'default',
         border: '1px solid',
         borderColor: 'gray.3',
       }}
     >
       <Box ref={sliderRef} className="keen-slider">
-        {React.Children.map(children, child => (
-          <div className="keen-slider__slide">{child}</div>
+        {React.Children.map(children, (child, index) => (
+          <Box key={`keen-slide-${index}`} className="keen-slider__slide">
+            {child}
+          </Box>
         ))}
       </Box>
     </Box>

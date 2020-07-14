@@ -116,7 +116,14 @@ export default function DeckInfo(props: DeckInfoProps) {
                     {fullHouseCombinations.map((combination, index) => (
                       <React.Fragment key={combination.toString()}>
                         {index > 0 && <Divider my={0} />}
-                        <Flex p={2}>
+                        <Flex
+                          p={2}
+                          sx={{
+                            ':nth-of-type(even)': {
+                              backgroundColor: 'gray.1',
+                            },
+                          }}
+                        >
                           <CheckIcon />
                           <Box ml={2}>{combination.join(', ')}</Box>
                         </Flex>
