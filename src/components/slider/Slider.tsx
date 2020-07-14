@@ -10,7 +10,7 @@ type SliderProps = {
 
 export default function Slider(props: SliderProps) {
   const { children } = props;
-  const [sliderRef] = useKeenSlider<HTMLDivElement>({
+  const [sliderRef, keenSlider] = useKeenSlider<HTMLDivElement>({
     mode: 'free',
     slidesPerView: 3,
     breakpoints: {
@@ -24,10 +24,16 @@ export default function Slider(props: SliderProps) {
         slidesPerView: 8,
       },
       '(min-width: 1024px)': {
-        slidesPerView: 10,
+        slidesPerView: 3,
       },
     },
   });
+
+  React.useLayoutEffect(() => {
+    if (keenSlider) {
+      keenSlider.resize();
+    }
+  }, [keenSlider]);
 
   return (
     <Box
