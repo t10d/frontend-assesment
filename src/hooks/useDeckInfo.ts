@@ -57,7 +57,7 @@ function checkIfIsFullHouseCombination(combinationOfCards: string[]) {
   return false;
 }
 
-export function useDeckInfo(data: PileCardsData | undefined) {
+export default function useDeckInfo(data: PileCardsData | undefined) {
   const [cards, setCards] = React.useState<string[]>([]);
   const fullHouseCombinationsRef = React.useRef<string[][]>([]);
   const [fullHouseCombinations, setFullHouseCombinations] = React.useState<

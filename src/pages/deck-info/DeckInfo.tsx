@@ -4,7 +4,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useAsync } from 'react-async';
 import { CARDS_PILE_NAME } from '../../utils/constants';
-import { useDeckInfo } from '../../hooks/useDeckInfo';
+import useDeckInfo from '../../hooks/useDeckInfo';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import Layout from '../../components/layout/Layout';
 import Slider from '../../components/slider/Slider';
