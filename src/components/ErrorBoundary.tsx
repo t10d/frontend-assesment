@@ -31,6 +31,7 @@ export default class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <Flex
+          mt={5}
           px={2}
           sx={{
             width: 'full',
