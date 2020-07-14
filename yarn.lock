@@ -9355,6 +9355,11 @@ jsx-ast-utils@^2.4.1:
     array-includes "^3.1.1"
     object.assign "^4.1.0"
 
+keen-slider@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/keen-slider/-/keen-slider-5.2.0.tgz#265aff8439bca6b64889b2b7ac2efab9b39c3bcc"
+  integrity sha512-B6B7SdAn8Q3Olqrt6LyFpOj0wrp46E3fzywXjBVaDrBnqrFicA9aylBjrjAZ7rCsYzcJ7Wy4opqV8Sh4zj9QHw==
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"

@@ -11,6 +11,7 @@ export default function Card(props: CardProps) {
 
   return (
     <Flex
+      bg="white"
       sx={{
         width: '5.5rem',
         justifyContent: 'center',
