@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PileCardsData } from '../services/api';
 import { getSuitAndValueFromCard } from '../utils/fns';
+import { PileCardsData } from '../services/client';
 
 function turnCombinationOfCardsIntoMap(combinationOfCards: string[]) {
   const map = new Map<string, number>();

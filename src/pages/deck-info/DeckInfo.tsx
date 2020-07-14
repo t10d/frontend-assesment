@@ -5,6 +5,8 @@ import { getPileCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
 import { useDeckInfo } from '../../hooks/useDeckInfo';
 import ErrorBoundary from '../../components/ErrorBoundary';
+import Layout from '../../components/layout/Layout';
+import { getPileCards } from '../../services/client';
 
 type RouteParams = { deckId: string };
 type DeckInfoProps = RouteComponentProps<RouteParams>;

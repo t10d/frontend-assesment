@@ -26,9 +26,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import Layout from '../../components/layout/Layout';
 import AlertIcon from '../../components/alert-icon/AlertIcon';
 import ErrorBoundary from '../../components/ErrorBoundary';
-import { createDeck, createPile, drawCards } from '../../services/api';
 import { CARDS_PILE_NAME } from '../../utils/constants';
 import { getSuitAndValueFromCard } from '../../utils/fns';
+import { createDeck, createPile, drawCards } from '../../services/client';
 import {
   cards,
   initialCards,
