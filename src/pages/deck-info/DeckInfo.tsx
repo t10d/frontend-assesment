@@ -83,9 +83,10 @@ export default function DeckInfo(props: DeckInfoProps) {
                 );
               })}
             </Slider>
-            <Flex mt={4} sx={{ alignItems: 'center' }}>
+            <Divider />
+            <Flex mt={2} sx={{ alignItems: 'center' }}>
               <Text color="gray.6" sx={{ flex: 1 }} mr={2}>
-                Highest card:
+                Highest card
               </Text>
               <Box sx={{ flex: 2 }}>{cards[0]}</Box>
             </Flex>
@@ -100,7 +101,7 @@ export default function DeckInfo(props: DeckInfoProps) {
                   alignSelf: 'flex-start',
                 }}
               >
-                Full house combinations:
+                Full house combinations
               </Text>
               <Box sx={{ flex: 2, alignSelf: 'center' }}>
                 {fullHouseCombinations.length === 0 ? (

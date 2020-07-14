@@ -55,6 +55,7 @@ export default function Slider(props: SliderProps) {
     <Box
       p={3}
       mx="auto"
+      mb={4}
       bg="gray.1"
       sx={{
         maxWidth: containerMaxWidth[childrenCount],
