@@ -3,7 +3,7 @@ import pileCards2 from '../../src/__mocks__/pile-cards-2.json';
 import pileCards3 from '../../src/__mocks__/pile-cards-3.json';
 import { PileCardsData } from '../../src/services/client';
 
-describe('Tests for unauthenticated app views', () => {
+describe('App test suite', () => {
   const endpoints = 'endpoints.json';
 
   beforeEach(() => {
