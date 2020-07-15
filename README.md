@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# frontend-assesment
 
-## Available Scripts
+> Takehome frontend challenge that evaluates javascript and problem resolution skills.
 
-In the project directory, you can run:
+## Instruções para executar o projeto
 
-### `yarn start`
+1. Certifique-se de ter o Node.js (v12.16.1+), Yarn (preferencialmente) e o Git instalado em sua máquina;
+2. Clone o repositório para sua máquina local;
+3. Execute o comando `yarn` ou `yarn install` na pasta raiz do projeto para baixar as dependências;
+4. Crie um arquivo (ou renomeie o arquivo `.env.example` para) `.env`, na pasta raiz do projeto, e insira nele o seguinte conteúdo:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```shell script
+BROWSER=none
+REACT_APP_API_BASE_URL=https://deckofcardsapi.com/api
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+5. Para usar a aplicação, execute o comando `yarn dev`; quando o servidor estiver pronto, basta acessar o endereço `http://localhost:3000`;
 
-### `yarn test`
+6. Para executar os testes automatizados utilize o comando abaixo de acordo com o seu sistema:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Windows (cmd.exe)
 
-### `yarn build`
+```shell script
+set "CI=true" && yarn test:integration && yarn test:e2e:windows
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> As aspas em torno da atribuição da variável são necessárias para evitar um espaço em branco à direita.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Linux, macOS (Bash)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```shell script
+CI=true yarn test:integration && yarn test:e2e
+```
 
-### `yarn eject`
+7. (OPCIONAL) Caso queira ver o [StoryBook](https://storybook.js.org/) utilizado no projeto, execute o comando `yarn storybook`;
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> Quando o servidor estiver pronto, automaticamente o _browser_ abrirá uma nova aba com o endereço `http://localhost:9009`;
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+O projeto foi inicializado com o boilerplate gerado pelo [Create React App](https://github.com/facebook/create-react-app).

@@ -31,7 +31,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "start": "PORT=9090 react-scripts start --silent",
-    "start:windows": "set PORT=9090&& react-scripts start --silent",
+    "start:windows": "set \"PORT=9090\" && react-scripts start --silent",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "test:integration": "react-scripts test --env=jest-environment-jsdom-sixteen",
