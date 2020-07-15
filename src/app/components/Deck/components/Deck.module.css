@@ -1,0 +1,53 @@
+.header {
+  background-color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7);
+}
+
+.headerTitle {
+  margin: 0;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.content {
+  max-width: 960px;
+  padding: 40px;
+  margin: 60px auto;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/** Cards selection */
+.cardsTitle {
+  margin: 0;
+  color: #1abc9c;
+}
+
+.cardsContainer {
+  padding: 20px 0;
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 170px));
+}
+
+/**
+ * Since we'll be using button only here, it's
+ * unncessary to create a specific button component 
+*/
+.button {
+  border: none;
+  color: #1abc9c;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 10px 30px;
+  cursor: pointer;
+  border: 2px solid #1abc9c;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #1abc9c;
+}
