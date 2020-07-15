@@ -10,8 +10,6 @@ export default function Card({ number, suit }) {
   const [columnSize, setColumnSize] = useState(0)
 
   useEffect(() => {
-    console.log(number)
-    console.log(suit)
     getSuitSimbol()
     getNumberValue()
   }, [])
@@ -43,7 +41,6 @@ export default function Card({ number, suit }) {
       if(number <= 3) {
         setColumnSize(1)
       } else if (number % 2 === 0 && number !== '8' && number !== '10') {
-        console.log(number)
         setColumnSize(2)
       } else {
         setColumnSize(3)
@@ -54,11 +51,11 @@ export default function Card({ number, suit }) {
   const getSuitSimbol = () => {
     switch(suit.toLowerCase()) {
       case 'hearts':
-        setColor("red")
+        setColor("rgb(204, 51, 51)")
         setSuitValue(<span>&#9829;</span>)
         break
       case 'diamonds':
-        setColor("red")
+        setColor("rgb(204, 51, 51)")
         setSuitValue(<span>&#9830;</span>)
         break
       case 'clubs':
