@@ -1,7 +1,8 @@
-import React, { HTMLProps } from "react";
+import React from "react";
+import styles from "./Input.module.css";
 
-const Input = (props: HTMLProps<HTMLInputElement>) => {
-  return <input {...props} />;
+const Input = ({ register, required, ...rest }: any) => {
+  return <input className={styles.input} ref={register} {...rest} />;
 };
 
 export default Input;
