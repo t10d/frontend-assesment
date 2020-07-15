@@ -34,7 +34,7 @@ export default function DeckInfo(props: DeckInfoProps) {
               alignItems: 'center',
             }}
           >
-            <Spinner />
+            <Spinner data-testid="loading" />
           </Flex>
         ) : isRejected ? (
           <Flex
@@ -50,6 +50,7 @@ export default function DeckInfo(props: DeckInfoProps) {
               px={3}
               py={2}
               sx={{ borderRadius: 'full', fontSize: 0 }}
+              data-testid="fetch-error"
             >
               Something went wrong
             </Badge>

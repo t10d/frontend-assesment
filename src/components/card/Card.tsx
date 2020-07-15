@@ -11,6 +11,7 @@ export default function Card(props: CardProps) {
 
   return (
     <Flex
+      data-testid={`card-${value}${suit}`}
       bg="white"
       sx={{
         width: '5.5rem',
