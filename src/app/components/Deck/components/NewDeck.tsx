@@ -2,14 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../../Form";
 import styles from "./Deck.module.css";
-import {
-  validation,
-  sortCards,
-  findFullHouseCombinations,
-} from "../../../../utils";
-import { createDeck } from "../services";
+import { validation, sortCards } from "../../../../utils";
+import { createDeck, drawCards, createPile } from "../services";
 
-const NewDeck = () => {
+const NewDeck = (props: any) => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data: any) => {
@@ -19,13 +15,15 @@ const NewDeck = () => {
     const cards = Object.values(data)
       .filter((card: any) => Boolean(card))
       .map((card: any) => card.toUpperCase());
-    createDeck(cards);
 
-    console.log("Valores: ", sortCards(cards, rotationCard));
-    console.log(
-      "Que tal: ",
-      findFullHouseCombinations(sortCards(cards, rotationCard))
-    );
+    createDeck(cards)
+      .then((deck) => deck)
+      .then((deck) => drawCards(deck.deck_id, deck.remaining))
+      .then((deck) => createPile(deck.deck_id, sortCards(cards, rotationCard)))
+      .then((result) => {
+        // Set things to redux
+        props.history.push(`/deck/${result.deck_id}`);
+      });
   };
 
   const RenderError = () => (
