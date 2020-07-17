@@ -61,3 +61,14 @@
   color: #fff;
   background-color: #1abc9c;
 }
+
+/** Deck Info */
+.orderedImg {
+  width: 80px;
+  margin: 0 10px;
+}
+
+.listCombinations li {
+  margin: 20px 0;
+  font-size: 15px;
+}
