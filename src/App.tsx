@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { NewDeck } from "./app/components/Deck";
+import DeckInfo from "./app/components/Deck/components/DeckInfo";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="/deck/new" />
         <Route exact path="/deck/new" component={NewDeck} />
-        <Route exact path="/deck/:id" render={() => <div>Deck details</div>} />
+        <Route exact path="/deck/:id" component={DeckInfo} />
       </Switch>
     </div>
   );
