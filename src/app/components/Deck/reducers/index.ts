@@ -33,7 +33,7 @@ export const deckSlice = createSlice({
 
     addPilesToDeck: (state, action: PayloadAction<DeckState>) => {
       const { piles } = action.payload;
-
+      state.loading = false;
       state.piles = { ...state.piles, ...piles };
     },
   },

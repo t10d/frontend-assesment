@@ -54,8 +54,11 @@ const NewDeck = (props: any) => {
       <header className={styles.header}>
         <h2 className={styles.headerTitle}>Cards</h2>
       </header>
-      {!loading && !error && (
-        <section className={styles.content}>
+
+      <section className={styles.content}>
+        {!loading && error && <p>{error}</p>}
+        {!error && loading && <p>Loading data...</p>}
+        {!loading && !error && (
           <form onSubmit={handleSubmit(onSubmit)}>
             <h3 className={styles.cardsTitle}>Select your cards:</h3>
             <div className={styles.cardsContainer}>
@@ -152,8 +155,8 @@ const NewDeck = (props: any) => {
               Submit
             </button>
           </form>
-        </section>
-      )}
+        )}
+      </section>
     </div>
   );
 };
