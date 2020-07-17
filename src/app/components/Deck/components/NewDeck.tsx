@@ -2,14 +2,35 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../../Form";
 import styles from "./Deck.module.css";
-import { validation } from "../utils";
+import {
+  validation,
+  sortCards,
+  findFullHouseCombinations,
+} from "../../../../utils";
+import { createDeck } from "../services";
 
 const NewDeck = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log("Dados heee: ", data);
+    const rotationCard = data.rotation;
+    data["rotation"] = undefined;
+
+    const cards = Object.values(data)
+      .filter((card: any) => Boolean(card))
+      .map((card: any) => card.toUpperCase());
+    createDeck(cards);
+
+    console.log("Valores: ", sortCards(cards, rotationCard));
+    console.log(
+      "Que tal: ",
+      findFullHouseCombinations(sortCards(cards, rotationCard))
+    );
   };
+
+  const RenderError = () => (
+    <span className={styles.error}>Please, enter a valid card.</span>
+  );
 
   return (
     <div>
@@ -26,7 +47,7 @@ const NewDeck = () => {
                 name="card1"
                 register={register(validation)}
               />
-              {errors.card1 && <span>Error</span>}
+              {errors.card1 && <RenderError />}
             </div>
             <div>
               <Input
@@ -34,7 +55,7 @@ const NewDeck = () => {
                 name="card2"
                 register={register(validation)}
               />
-              {errors.card2 && <span>Error</span>}
+              {errors.card2 && <RenderError />}
             </div>
             <div>
               <Input
@@ -42,7 +63,7 @@ const NewDeck = () => {
                 name="card3"
                 register={register(validation)}
               />
-              {errors.card3 && <span>Error</span>}
+              {errors.card3 && <RenderError />}
             </div>
             <div>
               <Input
@@ -50,7 +71,7 @@ const NewDeck = () => {
                 name="card4"
                 register={register(validation)}
               />
-              {errors.card4 && <span>Error</span>}
+              {errors.card4 && <RenderError />}
             </div>
             <div>
               <Input
@@ -58,7 +79,7 @@ const NewDeck = () => {
                 name="card5"
                 register={register(validation)}
               />
-              {errors.card5 && <span>Error</span>}
+              {errors.card5 && <RenderError />}
             </div>
             <div>
               <Input
@@ -66,7 +87,7 @@ const NewDeck = () => {
                 name="card6"
                 register={register(validation)}
               />
-              {errors.card6 && <span>Error</span>}
+              {errors.card6 && <RenderError />}
             </div>
             <div>
               <Input
@@ -74,7 +95,7 @@ const NewDeck = () => {
                 name="card7"
                 register={register(validation)}
               />
-              {errors.card7 && <span>Error</span>}
+              {errors.card7 && <RenderError />}
             </div>
             <div>
               <Input
@@ -82,7 +103,7 @@ const NewDeck = () => {
                 name="card8"
                 register={register(validation)}
               />
-              {errors.card8 && <span>Error</span>}
+              {errors.card8 && <RenderError />}
             </div>
             <div>
               <Input
@@ -90,7 +111,7 @@ const NewDeck = () => {
                 name="card9"
                 register={register(validation)}
               />
-              {errors.card9 && <span>Error</span>}
+              {errors.card9 && <RenderError />}
             </div>
             <div>
               <Input
@@ -98,8 +119,16 @@ const NewDeck = () => {
                 name="card10"
                 register={register(validation)}
               />
-              {errors.card10 && <span>Error</span>}
+              {errors.card10 && <RenderError />}
             </div>
+          </div>
+          <div className={styles.rotation}>
+            <Input
+              placeholder="Rotation Card"
+              name="rotation"
+              register={register(validation)}
+            />
+            {errors.rotation && <RenderError />}
           </div>
           <button type="submit" className={styles.button}>
             Submit
