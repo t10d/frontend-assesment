@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HomeComponent from "../components/Home";
-import Card from "../Model/Card";
+import Card from "../models/Card";
 
 const suits = ["S", "H", "C", "D"];
 const values = [

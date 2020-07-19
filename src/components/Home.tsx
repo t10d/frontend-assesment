@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import SelectCard from "./SelectCard";
-import Card from "../Model/Card";
+import ICard from "../models/Card";
+import Card from "./Card";
 
 const Container = styled.div``;
 
@@ -14,8 +15,8 @@ interface IHome {
     setSelectedRotationValue: Function;
     handleAddCard: Function;
     handleAddRotationCard: Function;
-    cards: Card[];
-    rotationCard: Card;
+    cards: ICard[];
+    rotationCard: ICard;
 }
 
 const Home: React.FC<IHome> = ({
@@ -61,6 +62,7 @@ const Home: React.FC<IHome> = ({
                 setSelectedValue={setSelectedRotationValue}
                 handleAddCard={handleAddRotationCard}
             />
+            <Card suit={rotationCard.suit} value={rotationCard.value}/>
         </Container>
     );
 };
