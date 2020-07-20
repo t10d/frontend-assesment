@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Column1, Column2, Column3, BRNumber, TLNumber, Grid, GridItem } from './styles'
+import './style.css'
 
 export default function Card({ number, suit }) {
 
@@ -51,11 +51,11 @@ export default function Card({ number, suit }) {
   const getSuitSimbol = () => {
     switch(suit.toLowerCase()) {
       case 'hearts':
-        setColor("rgb(204, 51, 51)")
+        setColor("red")
         setSuitValue(<span>&#9829;</span>)
         break
       case 'diamonds':
-        setColor("rgb(204, 51, 51)")
+        setColor("red")
         setSuitValue(<span>&#9830;</span>)
         break
       case 'clubs':
@@ -70,32 +70,32 @@ export default function Card({ number, suit }) {
   }
 
   return (
-    <Container color={color}>
-      <Column1>
-        <TLNumber>
+    <div className={`container ${color}`}>
+      <div className="column1">
+        <div className="TLNumber">
           {numberString}
           {suitValue}
-        </TLNumber>        
-      </Column1>
+        </div>        
+      </div>
 
-      <Column2>
-        <Grid column={columnSize}>
+      <div className="column2">
+        <div className={`grid-${columnSize}`}>
           {
             [...Array(numberValue)].map((x, i) => 
               numberValue < 11 ?
-                <GridItem>{suitValue}</GridItem> :
+                <p className="grid-item">{suitValue}</p> :
                 <div></div>
             )
           }
-        </Grid>
-      </Column2>
+        </div>
+      </div>
 
-      <Column3>
-        <BRNumber>
+      <div className="column3">
+        <div className="BRNumber">
           {numberString}
           {suitValue}
-        </BRNumber>
-      </Column3>
-    </Container>
+        </div>
+      </div>
+    </div>
   )
 }

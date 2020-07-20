@@ -20,16 +20,7 @@ export function getCards() {
 
     try {
       const cardsResponse = await api.get(`${deck_id}/draw/?count=10`)
-      // TODO: const cards = cardsResponse.data.cards
-      const cards = [
-        {code: "2H", value: "2", suit:"hearts"},
-        {code: "2D", value: "2", suit:"diamonds"},
-        {code: "2C", value: "2", suit:"clubs"},
-        {code: "2S", value: "2", suit:"spades"},
-        {code: "3H", value: "3", suit:"hearts"},
-        {code: "3D", value: "3", suit:"diamonds"},
-        {code: "3C", value: "3", suit:"clubs"}
-      ]
+      const cards = cardsResponse.data.cards
   
       dispatch(getCardsAction(cards))
     } catch (err) {
@@ -68,32 +59,6 @@ export function orderCardsBasedOnRotationCard() {
     const orderedArray = orderHandCards(suitSequence, numberSequence, cards)
     dispatch(getCardsAction(orderedArray))
     dispatch(cardsLoading(false))
-  }
-}
-
-
-// TODO: CREATE ALL POSSIBILITIES
-export function findFullHouse() {
-  return async (dispatch, getState) => {
-    const cards = getState().cardsReducer.cards
-
-    let fullHouses = []
-    
-    cards.forEach(card => {
-      const duplicates = cards.filter(compareCard => card.value === compareCard.value)
-      if (duplicates.length > 1) {
-        if (!fullHouses.some(array => array[0].value === duplicates[0].value)){
-          fullHouses = [...fullHouses, duplicates]
-        }
-      }
-    })
-
-    console.log(fullHouses)
-    
-    if (fullHouses.some(array => array.length === 3) && fullHouses.some(array => array.length === 2)) {
-      console.log(fullHouses)
-
-    }
   }
 }
 

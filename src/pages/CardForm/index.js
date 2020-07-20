@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Deck } from '../../components'
 import './style.css'
 import { getDeckId, getCards, getRotationCard } from '../../actions/cardActions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function CardForm({ getDeckId, getCards, getRotationCard, isLoading, cards, rotationCard, loadingRotation }) {
   
+  const [transition, setTransition] = useState(false)
+
+  const history = useHistory()
+
   useEffect(() => {
     loadCards()
   }, [])
@@ -17,9 +21,17 @@ function CardForm({ getDeckId, getCards, getRotationCard, isLoading, cards, rota
     await getRotationCard()
   }
 
+  const nextPage = () => {
+    setTransition(true)
+    setTimeout(() => {
+      history.push('/pile')
+    }, 2000)
+  }
+
   if (!isLoading) {
     return (
       <>
+        <div className={transition ? 'active-transition': ''} />
         <div className="box">
           {
             cards.map(card => (
@@ -36,7 +48,7 @@ function CardForm({ getDeckId, getCards, getRotationCard, isLoading, cards, rota
                 <Card number={rotationCard.value} suit={rotationCard.suit} />
                 : null
           }
-          <Link to="/pile">Go to Deck</Link>
+          <button className="next-button" onClick={nextPage}>Go to Deck</button>
         </div>
       </>
     );

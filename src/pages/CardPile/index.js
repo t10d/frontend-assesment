@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
-import { orderCardsBasedOnRotationCard, findFullHouse } from '../../actions/cardActions'
+import { orderCardsBasedOnRotationCard } from '../../actions/cardActions'
 import { connect } from 'react-redux';
 import Card from '../../components/Card/index';
 import './style.css'
 
-function CardPile({ orderCardsBasedOnRotationCard, findFullHouse, cards, isLoading }) {
+function CardPile({ orderCardsBasedOnRotationCard, cards, isLoading }) {
   useEffect(() => {
     orderCardsBasedOnRotationCard()
-    findFullHouse()
   }, [])
 
   if (isLoading) {
@@ -15,13 +14,16 @@ function CardPile({ orderCardsBasedOnRotationCard, findFullHouse, cards, isLoadi
   }
 
   return (
-    <div className="App">
-      {
-          cards.map(card => (
-            <Card key={card.code} number={card.value} suit={card.suit} />
-          ))
-        }
-    </div>
+    <>
+      <div className='desactive-transition'/>
+      <div className="App">
+        {
+            cards.map(card => (
+              <Card key={card.code} number={card.value} suit={card.suit} />
+            ))
+          }
+      </div>
+    </>
   )
 }
 
@@ -31,6 +33,6 @@ const mapStateToProps = state => ({
   isLoading: state.cardsReducer.isLoading
 })
 
-const mapDispatchToProps = { orderCardsBasedOnRotationCard, findFullHouse }
+const mapDispatchToProps = { orderCardsBasedOnRotationCard }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardPile)
