@@ -1,0 +1,40 @@
+.box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px 1px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottomBox {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.active-transition {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  z-index: 10;
+  background-color: green;
+  animation-name: taking-cards;
+  animation-duration: 2s;
+}
+
+@keyframes taking-cards {
+  from {width: 0;}
+  to {width: 100%;}
+}
+
+.next-button {
+  width: 200px;
+  font-weight: bold;
+  font-size: 2em;
+  font-family: 'Courier New', Courier, monospace;
+}
