@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   * {
@@ -14,11 +14,14 @@ export default createGlobalStyle`
     height: 100%;
   }
   body {
-    background: #2D2B3C no-repeat center top;
+    background: #2e933c no-repeat center top;
     -webkit-font-smoothing: antialiased;
   }
   body, input, button {
     font-family: 'Montserrat', sans-serif;
+  }
+  button {
+    cursor: pointer;
   }
   #root {
     max-width: 1360px;

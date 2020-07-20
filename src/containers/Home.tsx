@@ -1,30 +1,35 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import HomeComponent from "../components/Home";
 import Card from "../models/Card";
 
-const suits = ["S", "H", "C", "D"];
+const suits = ["H", "D", "C", "S"];
 const values = [
-    "A",
     "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
+    "A",
     "K",
-    "J",
     "Q",
+    "J",
+    "10",
+    "9",
+    "8",
+    "7",
+    "6",
+    "5",
+    "4",
+    "3",
 ];
 
 const Home: React.FC = () => {
     const [selectedSuit, setSelectedSuit] = useState<string>("");
     const [selectedValue, setSelectedValue] = useState<string>("");
 
-    const [selectedRotationSuit, setSelectedRotationSuit] = useState<string>("");
-    const [selectedRotationValue, setSelectedRotationValue] = useState<string>("");
+    const [selectedRotationSuit, setSelectedRotationSuit] = useState<string>(
+        ""
+    );
+    const [selectedRotationValue, setSelectedRotationValue] = useState<string>(
+        ""
+    );
 
     const [cards, setCards] = useState<Card[]>([
         {
@@ -37,13 +42,17 @@ const Home: React.FC = () => {
         value: "",
     });
 
-    const handleAddCard = () => {
-        const newCard: Card = {
-            suit: selectedSuit,
-            value: selectedValue,
-        };
+    const history = useHistory();
 
-        setCards([...cards, newCard]);
+    const handleAddCard = () => {
+        if (selectedSuit && selectedValue) {
+            const newCard: Card = {
+                suit: selectedSuit,
+                value: selectedValue,
+            };
+
+            setCards([...cards, newCard]);
+        }
     };
 
     const handleAddRotationCard = () => {
@@ -51,6 +60,16 @@ const Home: React.FC = () => {
             suit: selectedRotationSuit,
             value: selectedRotationValue,
         });
+    };
+
+    const handleRemoveCard = (index: number) => {
+        const newCards = cards.slice(index, 1);
+
+        setCards([...newCards]);
+    };
+
+    const handleSubmit = () => {
+        history.push("/result");
     };
 
     return (
@@ -66,6 +85,8 @@ const Home: React.FC = () => {
                 setSelectedRotationValue,
                 handleAddCard,
                 handleAddRotationCard,
+                handleRemoveCard,
+                handleSubmit,
             }}
         />
     );
