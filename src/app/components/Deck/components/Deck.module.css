@@ -1,0 +1,114 @@
+.header {
+  background-color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.7);
+}
+
+.headerTitle {
+  margin: 0;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.content {
+  max-width: 960px;
+  padding: 40px;
+  margin: 60px auto;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/** Cards selection */
+.cardsTitle {
+  margin: 0;
+  color: #1abc9c;
+}
+
+.cardsContainer {
+  padding: 20px 0;
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 170px));
+}
+
+.rotation {
+  padding: 20px 0;
+}
+
+.error {
+  color: #c0392b;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+/**
+ * Since we'll be using button only here, it's
+ * unncessary to create a specific button component 
+*/
+.button {
+  border: none;
+  color: #1abc9c;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 10px 30px;
+  background-color: #fff;
+  cursor: pointer;
+  border: 2px solid #1abc9c;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #1abc9c;
+}
+
+/** Deck Info */
+.listCards {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(10, 100px);
+}
+
+.listCombinations li {
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+/** Cards Definitions */
+.cardContainer {
+  width: 80px;
+  height: 120px;
+  padding: 0 3px;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardContainer[data-card*="hearts"],
+.cardContainer[data-card*="diams"] {
+  color: #c0392b;
+}
+
+.cardCenter {
+  align-self: center;
+  font-size: 45px;
+}
+
+.cardTop,
+.cardBottom {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cardBottom {
+  align-self: flex-end;
+  transform: rotate(180deg);
+}
+
+.cardTop span:nth-child(2),
+.cardBottom span:nth-child(2) {
+  margin: -4px;
+}
