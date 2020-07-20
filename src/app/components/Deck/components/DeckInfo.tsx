@@ -10,6 +10,7 @@ import {
 import { getPile } from "../services";
 import { findFullHouseCombinations } from "../../../../utils";
 import { Card } from "../services/types";
+import { default as CardImage } from "./Card";
 
 const DeckInfo = (props: any) => {
   const { loading, error, piles } = useSelector(selectDeckInfo);
@@ -55,27 +56,25 @@ const DeckInfo = (props: any) => {
           <Fragment>
             <div className={styles.orderedCards}>
               <h3>Ordered Pile</h3>
-              {pileName &&
-                piles &&
-                piles[pileName].cards.map((card: Card, key: number) => {
-                  return (
-                    <img
-                      className={styles.orderedImg}
+              <div className={styles.listCards}>
+                {pileName &&
+                  piles &&
+                  piles[pileName]?.cards?.map((card: Card, key: number) => (
+                    <CardImage
                       key={key}
-                      src={card.image}
-                      alt="hahaha"
+                      naipe={card.suit ?? ""}
+                      value={card.value ?? ""}
                     />
-                  );
-                })}
+                  ))}
+              </div>
             </div>
 
             <div>
               <h3>Highest Card</h3>
               {pileName && piles && (
-                <img
-                  className={styles.orderedImg}
-                  src={piles[pileName].cards[0].image}
-                  alt="hahaha"
+                <CardImage
+                  naipe={piles[pileName]?.cards?.[0].suit ?? ""}
+                  value={piles[pileName]?.cards?.[0].value ?? ""}
                 />
               )}
             </div>
