@@ -42,7 +42,11 @@ const NewDeck = (props: any) => {
         );
         props.history.push(`/deck/${result.deck_id}`);
       })
-      .catch((error) => dispatch(getDeckDetailsError({ error })));
+      .catch((error) =>
+        dispatch(
+          getDeckDetailsError({ error: "An error occured when saving data" })
+        )
+      );
   };
 
   const RenderError = () => (

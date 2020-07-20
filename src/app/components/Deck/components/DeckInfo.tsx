@@ -5,6 +5,7 @@ import {
   selectDeckInfo,
   addPilesToDeck,
   getDeckDetailsStart,
+  getDeckDetailsError,
 } from "../reducers";
 import { getPile } from "../services";
 import { findFullHouseCombinations } from "../../../../utils";
@@ -31,7 +32,14 @@ const DeckInfo = (props: any) => {
           );
         }
         return;
-      });
+      })
+      .catch(() =>
+        dispatch(
+          getDeckDetailsError({
+            error: "An error occured while retrieving data",
+          })
+        )
+      );
   }, [deckID, dispatch, pileName, setFullHouseComb]);
 
   return (
@@ -79,13 +87,7 @@ const DeckInfo = (props: any) => {
                   {fullHouseComb.map((comb: any, index: number) => {
                     return (
                       <Fragment key={`${comb.toString()} ~ ${index}`}>
-                        <li>
-                          [
-                          {JSON.stringify(
-                            comb.map((c: Card) => c.code).join(", ")
-                          )}
-                          ]
-                        </li>
+                        <li>{comb.map((c: Card) => c.code).join(", ")}</li>
                       </Fragment>
                     );
                   })}
