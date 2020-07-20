@@ -50,7 +50,9 @@ const NewDeck = (props: any) => {
   };
 
   const RenderError = () => (
-    <span className={styles.error}>Please, enter a valid card.</span>
+    <span data-testid="form-error" className={styles.error}>
+      Please, enter a valid card.
+    </span>
   );
 
   return (
@@ -70,7 +72,7 @@ const NewDeck = (props: any) => {
                 <Input
                   placeholder="Card 1"
                   name="card1"
-                  register={register(validation)}
+                  register={register({ ...validation, required: true })}
                 />
                 {errors.card1 && <RenderError />}
               </div>
@@ -151,7 +153,7 @@ const NewDeck = (props: any) => {
               <Input
                 placeholder="Rotation Card"
                 name="rotation"
-                register={register(validation)}
+                register={register({ ...validation, required: true })}
               />
               {errors.rotation && <RenderError />}
             </div>
