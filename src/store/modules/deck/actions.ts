@@ -1,23 +1,28 @@
-export function addDeckRequest(data: any) {
+import { IData } from "../../../models/Redux"
+
+export function addDeckRequest(data: IData) {
     return {
         type: '@deck/ADD_REQUEST',
         payload: { data },
     }
 }
 
-export function addDeckSuccess() {
+export function addDeckSuccess(deckId: string) {
     return {
         type: '@deck/ADD_SUCCESS',
+        payload: { deckId }
     }
 }
 
-export function loadDeckRequest() {
+export function loadDeckRequest(deckId: string) {
     return {
         type: '@deck/LOAD_REQUEST',
+        payload: { deckId }
     }
 }
 
-export function loadDeckSuccess(data: any) {
+export function loadDeckSuccess(data: IData) {
+    console.log('loadsucess');
     return {
         type: '@deck/LOAD_SUCCESS',
         payload: { data },

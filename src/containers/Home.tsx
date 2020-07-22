@@ -3,22 +3,10 @@ import { useHistory } from "react-router-dom";
 import HomeComponent from "../components/Home";
 import Card from "../models/Card";
 
-const suits = ["H", "D", "C", "S"];
-const values = [
-    "2",
-    "A",
-    "K",
-    "Q",
-    "J",
-    "10",
-    "9",
-    "8",
-    "7",
-    "6",
-    "5",
-    "4",
-    "3",
-];
+import { addDeckRequest } from "../store/modules/deck/actions";
+
+import { SUITS, VALUES } from "../constants";
+import { useDispatch } from "react-redux";
 
 const Home: React.FC = () => {
     const [selectedSuit, setSelectedSuit] = useState<string>("");
@@ -41,6 +29,8 @@ const Home: React.FC = () => {
         suit: "",
         value: "",
     });
+
+    const dispatch = useDispatch();
 
     const history = useHistory();
 
@@ -69,16 +59,22 @@ const Home: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        history.push("/result");
+        cards.shift();
+
+        console.log(cards);
+
+        dispatch(addDeckRequest({ deck: cards, rotationCard }));
+
+        history.push('/result');
     };
 
     return (
         <HomeComponent
+            suits={SUITS}
+            values={VALUES}
             {...{
                 cards,
                 rotationCard,
-                suits,
-                values,
                 setSelectedSuit,
                 setSelectedValue,
                 setSelectedRotationSuit,
