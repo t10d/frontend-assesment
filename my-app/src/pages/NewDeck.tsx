@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../components/Card";
 import { useStateValue } from "../state";
-import { StyledButton } from "../pages/HomePage";
+import { StyledButton } from "./HomePage";
 
 export interface NewDeckProps {
   id?: number;

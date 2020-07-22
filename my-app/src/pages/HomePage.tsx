@@ -16,7 +16,6 @@ const HomePageWrapper = styled.div`
 
 export const StyledButton = styled.button`
   padding: 0.8em;
-  color: black;
   background-color: #996515;
   color: white;
   font-size: 1.6em;
