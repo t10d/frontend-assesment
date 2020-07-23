@@ -15,3 +15,10 @@ export const VALUES = [
 ];
 
 export const SUITS = ["H", "D", "C", "S"];
+
+export const Actions = {
+    ADD_REQUEST: "@deck/ADD_REQUEST",
+    ADD_SUCCESS: "@deck/ADD_SUCCESS",
+    LOAD_REQUEST: "@deck/LOAD_REQUEST",
+    LOAD_SUCCESS: "@deck/LOAD_SUCCESS",
+};

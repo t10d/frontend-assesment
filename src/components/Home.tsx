@@ -8,7 +8,7 @@ import ForwardArrow from "../assets/icons/forward-arrow.svg";
 const Container = styled.div`
     display: flex;
     width: 100%;
-    height: 80%;
+    height: 100%;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;

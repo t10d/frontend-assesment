@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import HomeComponent from "../components/Home";
 import Card from "../models/Card";
 
@@ -32,8 +31,6 @@ const Home: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const history = useHistory();
-
     const handleAddCard = () => {
         if (selectedSuit && selectedValue) {
             const newCard: Card = {
@@ -41,7 +38,13 @@ const Home: React.FC = () => {
                 value: selectedValue,
             };
 
-            setCards([...cards, newCard]);
+            const findEqual = cards.find(card => card.suit === selectedSuit && card.value === selectedValue);
+
+            if (findEqual) {
+                console.error("Card already exists");
+            } else {
+                setCards([...cards, newCard]);
+            }
         }
     };
 
@@ -53,19 +56,14 @@ const Home: React.FC = () => {
     };
 
     const handleRemoveCard = (index: number) => {
-        const newCards = cards.slice(index, 1);
+        cards.splice(index, 1);
 
-        setCards([...newCards]);
+        setCards([...cards]);
     };
 
     const handleSubmit = () => {
         cards.shift();
-
-        console.log(cards);
-
         dispatch(addDeckRequest({ deck: cards, rotationCard }));
-
-        history.push('/result');
     };
 
     return (

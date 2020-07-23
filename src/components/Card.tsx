@@ -68,7 +68,7 @@ const Card: React.FC<ICardComponent> = ({ index, suit, value, handleRemoveCard }
         <Container color={color}>
             <div className="firstLine">
                 <Value>{value}</Value>
-                { handleRemoveCard ? (<DeleteCard onClick={(index) => handleRemoveCard(index)} >x</DeleteCard>) : null }
+                { handleRemoveCard ? (<DeleteCard onClick={() => handleRemoveCard(index)} >x</DeleteCard>) : null }
             </div>
             {suitMap[suit]}
             <Value>{value}</Value>

@@ -1,30 +1,30 @@
-import { IData } from "../../../models/Redux"
+import { IData } from "../../../models/Redux";
+import { Actions } from "../../../constants";
 
 export function addDeckRequest(data: IData) {
     return {
-        type: '@deck/ADD_REQUEST',
+        type: Actions.ADD_REQUEST,
         payload: { data },
-    }
+    };
 }
 
 export function addDeckSuccess(deckId: string) {
     return {
-        type: '@deck/ADD_SUCCESS',
-        payload: { deckId }
-    }
+        type: Actions.ADD_SUCCESS,
+        payload: { deckId },
+    };
 }
 
 export function loadDeckRequest(deckId: string) {
     return {
-        type: '@deck/LOAD_REQUEST',
-        payload: { deckId }
-    }
+        type: Actions.LOAD_REQUEST,
+        payload: { deckId },
+    };
 }
 
 export function loadDeckSuccess(data: IData) {
-    console.log('loadsucess');
     return {
-        type: '@deck/LOAD_SUCCESS',
+        type: Actions.LOAD_SUCCESS,
         payload: { data },
-    }
+    };
 }

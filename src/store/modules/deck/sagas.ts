@@ -9,6 +9,9 @@ import {
     loadDeckSuccess,
 } from "./actions";
 import Card from "../../../models/Card";
+import history from "../../../services/history";
+import { Actions } from "../../../constants";
+import { cardCode } from "../../../utils";
 
 interface ResponseCards {
     code: string;
@@ -27,10 +30,9 @@ interface IPile {
 function* addDeck({ payload: { data } }: ReturnType<typeof addDeckRequest>) {
     try {
         const { deck_id } = (yield call(api.get, "/new")).data;
-        console.log(deck_id);
 
         const cardsSequence = data.deck
-            .map((el) => `${el.value}${el.suit}`)
+            .map((el) => `${cardCode(el)}`)
             .join();
 
         yield call(api.get, `/${deck_id}/draw/?count=52`);
@@ -42,12 +44,11 @@ function* addDeck({ payload: { data } }: ReturnType<typeof addDeckRequest>) {
 
         yield call(
             api.get,
-            `/${deck_id}/pile/rotationCard/add/?cards=${data.rotationCard.value}${data.rotationCard.suit}`
+            `/${deck_id}/pile/rotationCard/add/?cards=${cardCode(data.rotationCard)}`
         );
 
-        console.log(deck_id);
-
         yield put(addDeckSuccess(deck_id));
+        yield call(history.push, "/result");
     } catch (error) {
         console.error(error);
     }
@@ -64,11 +65,8 @@ function* loadDeck({
 
         const { piles: rotationCardPile }: IPile = (yield call(
             api.get,
-            `/${deckId}/pile/deck/list`
+            `/${deckId}/pile/rotationCard/list`
         )).data;
-
-        console.log(deckPile);
-        console.log(rotationCardPile);
 
         const cards: Card[] = [];
 
@@ -81,7 +79,7 @@ function* loadDeck({
             cards.push(formattedCard);
         });
 
-        const rotationCardCode = rotationCardPile.deck.cards[0].code;
+        const rotationCardCode = rotationCardPile.rotationCard.cards[0].code;
 
         const rotationCard: Card = {
             value: rotationCardCode[0],
@@ -95,6 +93,6 @@ function* loadDeck({
 }
 
 export default all([
-    takeLatest(addDeckRequest, addDeck),
-    takeLatest(loadDeckRequest, loadDeck),
+    takeLatest(Actions.ADD_REQUEST, addDeck),
+    takeLatest(Actions.LOAD_REQUEST, loadDeck),
 ]);
