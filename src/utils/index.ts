@@ -1,4 +1,9 @@
 import Card from "../models/Card";
+import { SUITS, VALUES } from "../constants";
+
+export const validateCard = (card: Card) => {
+    return (SUITS.includes(card.suit) && VALUES.includes(card.value));
+}
 
 export const cardCode = (card: Card) => {
     return `${card.value}${card.suit}`;

@@ -201,7 +201,6 @@ const Result: React.FC = () => {
         function handleSortDeck() {
             const bubbleSortedDeck: Card[] = bubbleSort();
 
-            console.log(bubbleSortedDeck);
             setSortedDeck([...bubbleSortedDeck]);
         }
 
@@ -214,7 +213,6 @@ const Result: React.FC = () => {
         function generateFullhouses() {
             const fullHouse = fullHouses();
 
-            console.log(fullHouse);
             setFullhouses([...fullHouse]);
         }
 

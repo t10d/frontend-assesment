@@ -12,6 +12,7 @@ import Card from "../../../models/Card";
 import history from "../../../services/history";
 import { Actions } from "../../../constants";
 import { cardCode } from "../../../utils";
+import { toast } from "react-toastify";
 
 interface ResponseCards {
     code: string;
@@ -50,7 +51,7 @@ function* addDeck({ payload: { data } }: ReturnType<typeof addDeckRequest>) {
         yield put(addDeckSuccess(deck_id));
         yield call(history.push, "/result");
     } catch (error) {
-        console.error(error);
+        toast.error(error);
     }
 }
 
@@ -88,7 +89,7 @@ function* loadDeck({
 
         yield put(loadDeckSuccess({ deck: cards, rotationCard }));
     } catch (error) {
-        console.error(error);
+        toast.error(error);
     }
 }
 

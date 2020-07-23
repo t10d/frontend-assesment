@@ -15,7 +15,7 @@ interface ICardList {
 
 const CardList: React.FC<ICardList> = ({ cards, handleRemoveCard }) => {
     return (
-        <Container>
+        <Container role="card_list">
             {cards.map((card, index) =>
                 card.suit ? (
                     <Card

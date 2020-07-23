@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+
 import HomeComponent from "../components/Home";
 import Card from "../models/Card";
 
@@ -6,6 +8,7 @@ import { addDeckRequest } from "../store/modules/deck/actions";
 
 import { SUITS, VALUES } from "../constants";
 import { useDispatch } from "react-redux";
+import { validateCard } from "../utils";
 
 const Home: React.FC = () => {
     const [selectedSuit, setSelectedSuit] = useState<string>("");
@@ -38,21 +41,38 @@ const Home: React.FC = () => {
                 value: selectedValue,
             };
 
-            const findEqual = cards.find(card => card.suit === selectedSuit && card.value === selectedValue);
+            if (validateCard(newCard)) {
+                const findEqual = cards.find(
+                    (card) =>
+                        card.suit === selectedSuit &&
+                        card.value === selectedValue
+                );
 
-            if (findEqual) {
-                console.error("Card already exists");
+                if (findEqual) {
+                    toast.error("Card already exists");
+                } else {
+                    setCards([...cards, newCard]);
+                }
             } else {
-                setCards([...cards, newCard]);
+                toast.error("Invalid card");
             }
         }
     };
 
     const handleAddRotationCard = () => {
-        setRotationCard({
-            suit: selectedRotationSuit,
-            value: selectedRotationValue,
-        });
+        if (
+            validateCard({
+                suit: selectedRotationSuit,
+                value: selectedRotationValue,
+            })
+        ) {
+            setRotationCard({
+                suit: selectedRotationSuit,
+                value: selectedRotationValue,
+            });
+        } else {
+            toast.error("Invalid card");
+        }
     };
 
     const handleRemoveCard = (index: number) => {
@@ -62,6 +82,10 @@ const Home: React.FC = () => {
     };
 
     const handleSubmit = () => {
+        if (cards.length === 0) {
+            toast.error("The deck cannot be null");
+        }
+
         cards.shift();
         dispatch(addDeckRequest({ deck: cards, rotationCard }));
     };

@@ -65,7 +65,7 @@ const Card: React.FC<ICardComponent> = ({ index, suit, value, handleRemoveCard }
     const color = suit === "H" || suit === "D" ? "red" : "black";
 
     return (
-        <Container color={color}>
+        <Container color={color} role="card">
             <div className="firstLine">
                 <Value>{value}</Value>
                 { handleRemoveCard ? (<DeleteCard onClick={() => handleRemoveCard(index)} >x</DeleteCard>) : null }

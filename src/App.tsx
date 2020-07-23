@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer } from 'react-toastify';
+
 import Routes from "./routes";
 import { Router } from "react-router-dom";
 import GlobalStyle from "./styles/global";
@@ -14,6 +16,7 @@ function App() {
                 <Router history={history}>
                     <Routes />
                     <GlobalStyle />
+                    <ToastContainer autoClose={3000} />
                 </Router>
             </PersistGate>
         </Provider>
