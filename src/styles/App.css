@@ -1,8 +1,9 @@
-.App {
+body {
   text-align: center;
   background: radial-gradient(circle, rgba(11,161,0,1) 0%, rgba(22,143,0,1) 100%);
 }
-.App-header {
+
+.layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,4 +11,61 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  flex-grow: 1;
+}
+
+.App {
+  position: relative;
+}
+
+footer, header {
+  position: absolute;
+  width: 100%;
+  background-color: #040;
+  color: #fff;
+  text-align: right;
+}
+
+header {
+  top: 0px;
+  left: 0px;
+  padding: 5px 0px;
+  font-size: 10px;
+}
+
+header button.settings {
+  padding: 3px;
+  font-size: 21px;
+}
+
+header svg {
+  color: #fff;
+}
+
+.settings-box {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.settings-box hr {
+  width: 100%;
+}
+
+footer {
+  bottom: 0px;
+  left: 0px;
+  padding: 10px 0px;
+}
+
+footer span {
+  font-size: 14px;
+}
+
+footer svg {
+  font-size: 20px;
 }
