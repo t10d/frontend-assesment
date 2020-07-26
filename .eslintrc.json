@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "prettier",
+    "prettier/react",
+    "plugin:react/recommended",
+    "airbnb-base"
+  ],
+  "plugins": ["react", "react-hooks", "prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2020": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "prettier/prettier": "error",
+    "comma-dangle":"off"
+  }
+}
