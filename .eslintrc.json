@@ -26,6 +26,7 @@
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
     "prettier/prettier": "error",
-    "comma-dangle":"off"
+    "comma-dangle":"off",
+    "object-curly-newline": "off"
   }
 }
