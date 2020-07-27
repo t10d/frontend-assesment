@@ -1,6 +1,9 @@
 body {
   text-align: center;
-  background: radial-gradient(circle, rgba(11,161,0,1) 0%, rgba(22,143,0,1) 100%);
+  background:
+    url('/bg2.png') left top repeat,
+    url('/bg1.png') left top repeat,
+    radial-gradient(circle, rgba(11,161,0,1) 40%, rgba(15,93,0,1) 100%);
 }
 
 .layout {
@@ -56,6 +59,14 @@ header svg {
   width: 100%;
 }
 
+.settings-box button.Mui-disabled {
+  background-color: #006;
+  color: #fff;
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+}
+
 footer {
   bottom: 0px;
   left: 0px;
@@ -68,4 +79,57 @@ footer span {
 
 footer svg {
   font-size: 20px;
+}
+
+.form-buttons {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px 0px;
+  width: 100%;
+  background: rgba(0,0,0, 0.2);
+  margin: 20px 0px;
+}
+
+.form-buttons button {
+  margin: 0px 10px;
+}
+
+.form-result {
+  background: rgba(0,0,0, 0.2);
+  margin: 10px 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  justify-self: stretch;
+  min-height: 300px;
+
+}
+.form-select {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 710px;
+}
+.game-card {
+  width: 110px;
+  height: 160px;
+  background: linear-gradient(158deg, rgba(255,255,255,1) 55%, rgba(200,200,200,1) 100%);
+  margin: 5px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  border: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.form-pivot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

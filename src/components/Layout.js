@@ -1,21 +1,15 @@
 import React from 'react'
 import { Grid, Box } from '@material-ui/core'
+import Form from './Form'
+import Result from './Result'
 
 function Layout() {
   return (
     <Box className='layout'>
       <Grid container>
-        <Grid item xs={10}>
-          <Box className=''>Cards Selecionados</Box>
-        </Grid>
-        <Grid item xs={2}>
-          <Box className=''>Pivot</Box>
-        </Grid>
+        <Form />
         <Grid item xs={12}>
-          <Box className=''>Botões</Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box className=''>Resultado</Box>
+          <Result />
         </Grid>
       </Grid>
     </Box>

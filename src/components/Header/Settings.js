@@ -22,7 +22,7 @@ function Settings() {
         </ListItem>
         <ListItem>
           <ButtonGroup fullWidth={true} variant='contained' color='primary' aria-label='contained primary button group'>
-            <Button>10</Button>
+            <Button disabled={true}>10</Button>
             <Button>15</Button>
             <Button>20</Button>
           </ButtonGroup>
@@ -32,7 +32,7 @@ function Settings() {
         </ListItem>
         <ListItem>
           <ButtonGroup fullWidth={true} variant='contained' color='primary' aria-label='contained primary button group'>
-            <Button>Realista</Button>
+            <Button disabled={true}>Realista</Button>
             <Button>Minimista</Button>
           </ButtonGroup>
         </ListItem>
