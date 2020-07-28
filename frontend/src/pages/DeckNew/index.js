@@ -121,7 +121,7 @@ function NewDeck() {
       url: `https://deckofcardsapi.com/api/deck/new/shuffle/?cards=${selectedCards.map(card => card.code)}`,
     })
     .then (response => {
-      console.log(response.data)
+      //console.log(response.data)
       localStorage.setItem('deck_id', response.data.deck_id);
     });
 

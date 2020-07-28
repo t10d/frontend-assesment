@@ -18,9 +18,10 @@
     padding: 0 1vw;
 
     display: flex;
-    text-align: center;
-    justify-content: center;
+    flex-direction: row;
 }
+
+
 
 .deckid-container .cards .card {
     padding: 0 1vw;
