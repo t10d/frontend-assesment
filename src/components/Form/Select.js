@@ -1,19 +1,17 @@
 import React from 'react'
-import { Box, Paper } from '@material-ui/core'
+import { Box } from '@material-ui/core'
+import { useSelector } from 'react-redux'
+import Cards from '../Cards'
 
 function Select() {
+  const { cards } = useSelector((state) => state)
   return (
     <Box className='form-select'>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
-      <Paper class='game-card'>.</Paper>
+      {cards.map((card, k) => (
+        <Cards key={k} card={card}>
+          .
+        </Cards>
+      ))}
     </Box>
   )
 }

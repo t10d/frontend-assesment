@@ -1,0 +1,51 @@
+{
+  "deck": null, 
+  "quantity": 10,
+  "visual": "real",
+  "pivot": {
+    "value": null,
+    "suit": null
+  },
+  "cards": [
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    }
+  ]
+}

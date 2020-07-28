@@ -1,8 +1,13 @@
 import React from 'react'
 import { Box, List, ListItem, ListItemText, ListItemIcon, Divider, ButtonGroup, Button } from '@material-ui/core'
 import { MdSettings } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import { changeCardsQuantity, changeCardsVisual } from '../../actions'
+import buttonsQuantity from './buttonsQuantity.json'
+import buttonsVisual from './buttonsVisual.json'
 
 function Settings() {
+  const { quantity, visual } = useSelector((state) => state)
   return (
     <Box className='settings-box'>
       <List>
@@ -22,9 +27,11 @@ function Settings() {
         </ListItem>
         <ListItem>
           <ButtonGroup fullWidth={true} variant='contained' color='primary' aria-label='contained primary button group'>
-            <Button disabled={true}>10</Button>
-            <Button>15</Button>
-            <Button>20</Button>
+            {buttonsQuantity.map((button) => (
+              <Button key={button} disabled={quantity === button} onClick={() => changeCardsQuantity(button)}>
+                {button}
+              </Button>
+            ))}
           </ButtonGroup>
         </ListItem>
         <ListItem>
@@ -32,8 +39,15 @@ function Settings() {
         </ListItem>
         <ListItem>
           <ButtonGroup fullWidth={true} variant='contained' color='primary' aria-label='contained primary button group'>
-            <Button disabled={true}>Realista</Button>
-            <Button>Minimista</Button>
+            {buttonsVisual.map((button) => (
+              <Button
+                key={button.value}
+                disabled={visual === button.value}
+                onClick={() => changeCardsVisual(button.value)}
+              >
+                {button.text}
+              </Button>
+            ))}
           </ButtonGroup>
         </ListItem>
       </List>

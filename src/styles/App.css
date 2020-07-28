@@ -7,7 +7,6 @@ body {
 }
 
 .layout {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +21,12 @@ body {
 }
 
 footer, header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   background-color: #040;
   color: #fff;
   text-align: right;
+  z-index: 100;
 }
 
 header {
@@ -124,6 +124,16 @@ footer svg {
   border-radius: 7px;
   border: rgba(0, 0, 0, 0.25);
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.cards-visual-real .game-card {
+  width: 110px;
+  height: 160px;
+}
+
+.cards-visual-min .game-card {
+  width: 55px;
+  height: 80px;
 }
 
 .form-pivot {
