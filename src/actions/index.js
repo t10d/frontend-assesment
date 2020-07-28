@@ -9,10 +9,17 @@ export const changeCardsVisual = (value) => {
 }
 
 export const addNewCard = (position, card) => {
-  const newCard = { position, card }
-  store.dispatch({ type: 'CHANGE_VISUAL', newCard })
+  store.dispatch({ type: 'ADD_CARD', position, card })
+}
+
+export const changePivot = (card) => {
+  store.dispatch({ type: 'CHANGE_PIVOT', card })
 }
 
 export const removeCard = (position) => {
-  store.dispatch({ type: 'CHANGE_VISUAL', position })
+  store.dispatch({ type: 'REMOVE_CARD', position })
+}
+
+export const resetCards = () => {
+  store.dispatch({ type: 'RESET_CARDS' })
 }

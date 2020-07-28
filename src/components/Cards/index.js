@@ -1,8 +1,15 @@
 import React from 'react'
-import { Paper } from '@material-ui/core'
+import PropTypes from 'prop-types'
+import EmptyCard from './EmptyCard'
+import RegularCard from './RegularCard'
 
-function Cards() {
-  return <Paper className='game-card'>.</Paper>
+function Cards({ card }) {
+  const { value, suit } = card
+  return !value || !suit ? <EmptyCard card={card} /> : <RegularCard card={card} />
+}
+
+Cards.propTypes = {
+  card: PropTypes.object
 }
 
 export default Cards

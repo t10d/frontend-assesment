@@ -1,14 +1,15 @@
 import React from 'react'
 import { Box, Button } from '@material-ui/core'
+import { resetCards } from '../../actions'
 
 function Buttons() {
   return (
     <Box className='form-buttons'>
-      <Button variant='contained' color='secondary'>
-        Reiniciar
+      <Button onClick={() => resetCards()} variant='contained' color='secondary'>
+        Limpar Cartas
       </Button>
       <Button variant='contained' color='primary'>
-        Postar
+        Enviar Cartas
       </Button>
     </Box>
   )

@@ -27,6 +27,7 @@
     "semi": ["error", "never"],
     "prettier/prettier": "error",
     "comma-dangle":"off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "max-len": ["error", { "code": 120 }]
   }
 }

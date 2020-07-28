@@ -1,54 +1,68 @@
 [
   {
     "code": "A",
-    "value": "ACE"
+    "value": "ACE",
+    "ptbr": "Ás"
   },
   {
     "code": "K",
-    "value": "KING"
+    "value": "KING",
+    "ptbr": "Rei"
   },
   {
     "code": "Q",
-    "value": "QUEEN"
+    "value": "QUEEN",
+    "ptbr": "Rainha"
   },
   {
     "code": "J",
-    "value": "JACK"
+    "value": "JACK",
+    "ptbr": "Valete"
   },
   {
     "code": "10",
-    "value": "10"
+    "value": "10",
+    "ptbr": "10"
   },
   {
     "code": "9",
-    "value": "9"
+    "value": "9",
+    "ptbr": "9"
   },
   {
     "code": "8",
-    "value": "8"
+    "value": "8",
+    "ptbr": "8"
   },
   {
     "code": "7",
-    "value": "7"
+    "value": "7",
+    "ptbr": "7"
   },
   {
     "code": "6",
-    "value": "6"
+    "value": "6",
+    "ptbr": "6"
   },
   {
     "code": "5",
-    "value": "5"
+    "value": "5",
+    "ptbr": "5"
+    
   },
   {
     "code": "4",
-    "value": "4"
+    "value": "4",
+    "ptbr": "4"
   },
   {
     "code": "3",
-    "value": "3"
+    "value": "3",
+    "ptbr": "3"
   },
   {
     "code": "2",
-    "value": "2"
+    "value": "2",
+    "ptbr": "2"
   }
 ]

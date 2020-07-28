@@ -1,18 +1,26 @@
 [
   {
     "name": "HEARTS",
-    "value": "H"
+    "value": "H",
+    "ptbr": "Copas",
+    "color": "#d00"
   },
   {
     "name": "DIAMONDS",
-    "value": "D"
+    "value": "D",
+    "ptbr": "Ouro",
+    "color": "#d00"
   },
   {
     "name": "CLUBS",
-    "value": "C"
+    "value": "C",
+    "ptbr": "Paus",
+    "color": "#000"
   },
   {
     "name": "SPADES",
-    "value": "S"
+    "value": "S",
+    "ptbr": "Espadas",
+    "color": "#000"
   }
 ]

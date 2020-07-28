@@ -87,8 +87,9 @@ footer svg {
   justify-content: flex-end;
   padding: 10px 0px;
   width: 100%;
-  background: rgba(0,0,0, 0.2);
+  background: rgba(0,0,0, 0.15);
   margin: 20px 0px;
+  border: 1px dashed rgba(255,255,255, 0.7);
 }
 
 .form-buttons button {
@@ -96,7 +97,7 @@ footer svg {
 }
 
 .form-result {
-  background: rgba(0,0,0, 0.2);
+  background: rgba(0,0,0, 0.15);
   margin: 10px 0px;
   width: 100%;
   display: flex;
@@ -105,6 +106,7 @@ footer svg {
   align-self: stretch;
   justify-self: stretch;
   min-height: 300px;
+  border: 1px dashed rgba(255,255,255, 0.7);
 
 }
 .form-select {
@@ -129,11 +131,17 @@ footer svg {
 .cards-visual-real .game-card {
   width: 110px;
   height: 160px;
+  justify-content: center;
+  display: flex;
 }
 
 .cards-visual-min .game-card {
   width: 55px;
   height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .form-pivot {
@@ -142,4 +150,74 @@ footer svg {
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+.cards-visual-real .empty-pattern {
+  border: 2px solid #5f9ea0;
+  width: 86px;
+  height: 137px;
+  margin: 10px;
+  background: url('/pattern1.png') left top repeat;
+}
+
+.cards-visual-min .empty-pattern {
+  border: 1px solid #0a468f;
+  width: 30px;
+  height: 55px;
+  margin: 12px;
+  background: url('/pattern2.png') left top repeat;
+}
+
+.cards-visual-real .card-value1 {
+  position: absolute;
+  top: 10px; left: 10px;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.cards-visual-min .card-value1 {
+  display: none;
+}
+
+.cards-visual-real .suit {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  font-size: 29px;
+}
+
+.cards-visual-min .suit {
+  font-size: 19px;
+  width: 35px;
+  height: 35px;
+  margin: 5px 0px 0px 0px;
+}
+
+.cards-visual-real .suit img {
+  width: 100px;
+  height: 100px;
+}
+
+.cards-visual-min .suit img {
+  width: 35px;
+  height: 35px;
+}
+
+.cards-visual-real .card-value2 {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  font-size: 19px;
+  font-weight: 800;
+  transform: rotate(180deg)
+}
+
+.cards-visual-min .card-value2 {
+  font-size: 25px;
+  font-weight: 800;
+  margin: -5px 0px 0px 0px;
+  display: flex;
+}
+
+.form-select button.new-card-button {
+  padding: 0px;
 }
