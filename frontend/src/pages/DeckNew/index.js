@@ -1,10 +1,12 @@
 import React, { useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.css';
 import './modal.css';
 
 function NewDeck() {
+  const history = useHistory();
 
   const [availableCards, setAvailableCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -25,7 +27,7 @@ function NewDeck() {
     })
     .then (response => {
       // salvo localmente no storage o deck_id da resposta 
-      localStorage.setItem('deck_id', response.data.deck_id);
+      localStorage.setItem('deck_id_temp', response.data.deck_id);
     });
   },[]);
 
@@ -34,7 +36,7 @@ function NewDeck() {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://deckofcardsapi.com/api/deck/${localStorage.getItem('deck_id')}/draw/?count=52`,
+      url: `https://deckofcardsapi.com/api/deck/${localStorage.getItem('deck_id_temp')}/draw/?count=52`,
     })
     .then (response => {
       // salvo a resposta em availableCards
@@ -53,6 +55,9 @@ function NewDeck() {
 
       // salvo a carta de rotacao
       setRotationCard(addCard);
+
+      // remover do availablecards
+      setAvailableCards(availableCards.filter(card => card.code !== code));
       
       // escodo o botao de add carta de rotacao 
       document.getElementById('addRotationCard').hidden = true;
@@ -96,17 +101,33 @@ function NewDeck() {
   }
 
 
-  function handleSubimit (e) {
+  async function handleSubimit (e) {
     e.preventDefault();
 
-    console.log(localStorage.getItem('deck_id'));
-    console.log(selectedCards);
-    console.log(rotationCard);
+    if (rotationCard === 0) {
+      alert('Please select a rotation card');
+    } 
+    
+    else if (selectedCards.length === 0) {
+      alert ('Please add some cards to your deck first');
 
-    // um novo deck deve ser criado [1],
-    // as cartas submetidas pelo usuário devem ser adicionadas para 1 ou mais pilhas [2]
-    // o usuário deve ser redirecionado para a Rota #2.
+    // se está tudo bem, então continuamos para a próxima rota
+    } else {
+      //console.log(rotationCard);
+    
+      
+    await axios({
+      method: 'get',
+      url: `https://deckofcardsapi.com/api/deck/new/shuffle/?cards=${selectedCards.map(card => card.code)}`,
+    })
+    .then (response => {
+      console.log(response.data)
+      localStorage.setItem('deck_id', response.data.deck_id);
+    });
 
+
+    history.push(`/deck/${localStorage.getItem('deck_id')}`);
+    }
   }
 
 
