@@ -14,9 +14,7 @@ export const Reducers = (state = defaultState, action) => {
     case 'RESET_CARDS':
       return resetCards(state)
     case 'SET_DECK':
-      return state
-    case 'GET_DECK':
-      return state
+      return { ...state, deck: action.deck }
     case 'SET_RESULT_LIST':
       return state
     case 'SET_RESULT_ORDERED':
