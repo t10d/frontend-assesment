@@ -1,29 +1,5 @@
 import defaultState from '../utils/json/defaultState.json'
-
-const empty = {
-  value: null,
-  suit: null
-}
-
-const newCards = (state, quantity) => {
-  const cards = []
-  for (let i = 0; i < quantity; i += 1) {
-    const addNew = state.cards[i] ? state.cards[i] : empty
-    cards.push(addNew)
-  }
-  return cards
-}
-
-const addCard = (state, position, card) => {
-  const { cards } = state
-  cards[position] = card
-  return cards
-}
-
-const resetCards = (state) => {
-  const cards = state.cards.map(() => empty)
-  return { ...state, pivot: empty, cards }
-}
+import { newCards, addCard, resetCards } from './functions'
 
 export const Reducers = (state = defaultState, action) => {
   switch (action.type) {
@@ -37,6 +13,18 @@ export const Reducers = (state = defaultState, action) => {
       return { ...state, pivot: action.card }
     case 'RESET_CARDS':
       return resetCards(state)
+    case 'SET_DECK':
+      return state
+    case 'GET_DECK':
+      return state
+    case 'SET_RESULT_LIST':
+      return state
+    case 'SET_RESULT_ORDERED':
+      return state
+    case 'SET_RESULT_BEST':
+      return state
+    case 'SET_RESULT_FULLHOUSES':
+      return state
     default:
       return state
   }

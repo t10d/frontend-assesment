@@ -23,3 +23,27 @@ export const removeCard = (position) => {
 export const resetCards = () => {
   store.dispatch({ type: 'RESET_CARDS' })
 }
+
+export const setDeck = () => {
+  store.dispatch({ type: 'SET_DECK' })
+}
+
+export const getDeck = () => {
+  store.dispatch({ type: 'GET_DECK' })
+}
+
+export const setResultList = () => {
+  store.dispatch({ type: 'SET_RESULT_LIST' })
+}
+
+export const setResultOrdered = () => {
+  store.dispatch({ type: 'SET_RESULT_ORDERED' })
+}
+
+export const setResultBest = () => {
+  store.dispatch({ type: 'SET_RESULT_BEST' })
+}
+
+export const setResultFullhouses = () => {
+  store.dispatch({ type: 'SET_RESULT_FULLHOUSES' })
+}
