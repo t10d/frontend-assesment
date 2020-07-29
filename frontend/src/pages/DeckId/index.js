@@ -27,6 +27,7 @@ function DeckId() {
 
       const values = response.data.cards.map(card => card.value);
       setPileValues(values);
+      
 
     });
   },[]);
@@ -42,7 +43,7 @@ function DeckId() {
 
 
   // ordem proposta
-  const naipes = ['HEARTS', 'DIAMONTS', 'CLUBS', 'SPADES'];
+  const naipes = ['HEARTS', 'DIAMONDS', 'CLUBS', 'SPADES'];
   const valores = ['2', 'ACE', 'KING', 'QUEEN', 'JACK', '10', '9', '8', '7', '6', '5', '4', '3'];
 
 
@@ -160,8 +161,29 @@ function DeckId() {
 useEffect(() => {
 
   
-  const inputValue = ['2', '2', '2', '2', '4', '4', '4'];
-  const inputSuit = [ 'H', 'D', 'C', 'S', 'H', 'D', 'C'];
+  const inputValue = pileValues.map(card => card);
+  const inputSuit = pileSuit.map(card => card);
+
+
+  var length = inputValue.length;
+  
+  for (var x = 0; x < length; x++) {     
+      for (var y = 0; y < (length - x - 1); y++) { 
+  
+          if(inputValue[y] > inputValue[y+1]) {
+              
+              var tempValue = inputValue[y];  
+              inputValue[y] = inputValue[y+1]; 
+              inputValue[y+1] = tempValue; 
+
+              var tempSuit = inputSuit[y];  
+              inputSuit[y] = inputSuit[y+1]; 
+              inputSuit[y+1] = tempSuit; 
+
+          }
+      }        
+  }
+
 
   const valores = [];
   const ocorrencias = [];
@@ -298,7 +320,6 @@ useEffect(() => {
   var indexFullHouse = 0;
 
 
-//  for (var array = 0; array<trios.length; array++) {
     for (var trio = 0; trio<trios.length; trio++) {
      
       console.log();
@@ -307,21 +328,23 @@ useEffect(() => {
         
         if ( trios[trio][0] !== duplas[dupla][0] ) {
           
-          fullHouse[indexFullHouse] = [ trios[trio][0]+trios[trio][1], trios[trio][2]+trios[trio][3], trios[trio][4]+trios[trio][5], 
-                                        duplas[dupla][0]+duplas[dupla][1], + duplas[dupla][2]+duplas[dupla][3] ];
+          fullHouse[indexFullHouse] = [ trios[trio][0] + ' '+ trios[trio][1] + ' - ' +
+                                        trios[trio][2] + ' '+ trios[trio][3] + ' - ' +
+                                        trios[trio][4] + ' '+ trios[trio][5] + ' - ' + 
+                                        duplas[dupla][0] + ' '+ duplas[dupla][1] + ' - ' +
+                                        duplas[dupla][2] + ' '+ duplas[dupla][3] ];
 
           indexFullHouse++;
 
         }
       }
     }
-//  }
 
-console.log(fullHouse);
-setFullHouseCombinations(fullHouse);
+
+  //console.log(fullHouse);
+  setFullHouseCombinations(fullHouse);
 
    
-
 },[pileValues, pileSuit]);
 
 
@@ -364,7 +387,15 @@ setFullHouseCombinations(fullHouse);
       <span> {pileValueSorted[0]} {pileSuitSorted[0]} </span>
       
 
-      <h2>Full house combination: </h2>
+      <h2>Full house combinations: </h2>
+      {fullHouseCombinations.map(( value, index )=> (
+          <div key={index+500} >
+              <span> {index+1}:  </span>
+              <span>{value}</span>
+          </div>
+        ))}
+
+
       
     </div>
   );
