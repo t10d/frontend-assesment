@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, List, ListItem, ListItemText, ListItemIcon, Divider, ButtonGroup, Button } from '@material-ui/core'
 import { MdSettings } from 'react-icons/md'
 import { useSelector } from 'react-redux'
-import { changeCardsQuantity, changeCardsVisual } from '../../actions'
+import { changeCardsQuantity, changeCardsVisual } from 'actions'
 import buttonsQuantity from './buttonsQuantity.json'
 import buttonsVisual from './buttonsVisual.json'
 

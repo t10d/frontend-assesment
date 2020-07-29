@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Box, Button } from '@material-ui/core'
-import { resetCards } from '../../actions'
+import { resetCards } from 'actions'
 import Messages from '../Messages'
 
 function Buttons() {

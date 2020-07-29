@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
 import {
+  Button,
   Dialog,
   DialogTitle,
-  List,
-  ListItem,
   Divider,
-  Button,
   FormControl,
   InputLabel,
-  Select,
-  MenuItem
+  List,
+  ListItem,
+  MenuItem,
+  Select
 } from '@material-ui/core'
-import suitOrder from '../../utils/json/suitOrder.json'
-import valueOrder from '../../utils/json/valueOrder.json'
-import { addNewCard, changePivot } from '../../actions'
+import { makeStyles } from '@material-ui/core/styles'
+import { addNewCard, changePivot } from 'actions'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import suitOrder from 'utils/json/suitOrder.json'
+import valueOrder from 'utils/json/valueOrder.json'
 import Messages from '../Messages'
 
 const useStyles = makeStyles((theme) => ({

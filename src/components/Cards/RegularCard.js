@@ -1,7 +1,7 @@
 import { Box, Paper } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React from 'react'
-import suitOrder from '../../utils/json/suitOrder.json'
+import suitOrder from 'utils/json/suitOrder.json'
 
 function RegularCard({ card }) {
   const suitObj = suitOrder.find((suit) => suit.value === card.suit)
