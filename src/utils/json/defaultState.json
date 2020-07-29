@@ -2,6 +2,12 @@
   "deck": null, 
   "quantity": 10,
   "visual": "real",
+  "result" : {
+    "list": [],
+    "ordered": [],
+    "best": {},
+    "fullhouse": []
+  },
   "pivot": {
     "value": null,
     "suit": null
