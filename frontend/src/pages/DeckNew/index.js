@@ -118,11 +118,31 @@ function NewDeck() {
       
     await axios({
       method: 'get',
-      url: `https://deckofcardsapi.com/api/deck/new/shuffle/?cards=${selectedCards.map(card => card.code)}`,
+      url: `https://deckofcardsapi.com/api/deck/new/shuffle/?cards`,
     })
     .then (response => {
       //console.log(response.data)
       localStorage.setItem('deck_id', response.data.deck_id);
+    });
+
+
+    await axios({
+      method: 'get',
+      url: `https://deckofcardsapi.com/api/deck/${localStorage.getItem('deck_id')}/pile/pile_deck/add/?cards=${selectedCards.map(card => card.code)}`,
+    })
+    .then (response => {
+      //console.log(response.data)
+    });
+
+
+
+    await axios({
+      method: 'get',
+      url: `https://deckofcardsapi.com/api/deck/${localStorage.getItem('deck_id')}/pile/pile_rotation/add/?cards=${rotationCard.code}`,
+    })
+    .then (response => {
+      //console.log(response.data);
+      //console.log(`https://deckofcardsapi.com/api/deck/${localStorage.getItem('deck_id')}/pile/pile_rotation/add/?cards=${rotationCard.code}`);
     });
 
 

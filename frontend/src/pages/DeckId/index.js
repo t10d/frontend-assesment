@@ -11,25 +11,40 @@ function DeckId() {
   const [pileSuitSorted, setPileSuitSorted] = useState([]);
   const [pileValueSorted, setPileValueSorted] = useState([]);
 
+  const [rotationCardSuit, setRotationCardSuit] = useState();
+  const [rotationCardValue, setRotationCardValue] = useState();
+
   const [fullHouseCombinations, setFullHouseCombinations] = useState([]);
 
-
-
   useEffect(() => {
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+  
     axios({
       method: 'get',
-      url: `https://deckofcardsapi.com/api/deck/${localStorage.getItem('deck_id')}/draw/?count=11`
+      url: `https://deckofcardsapi.com/api/deck/${id}/pile/pile_deck/list/`
     })
     .then (response => {
-      
-      const suits = response.data.cards.map(card => card.suit);
+
+      const suits = response.data.piles.pile_deck.cards.map(card => card.suit);
       setPileSuit(suits);
 
-      const values = response.data.cards.map(card => card.value);
+      const values = response.data.piles.pile_deck.cards.map(card => card.value);
       setPileValues(values);
-      
+           
+    });
+
+    axios({
+      method: 'get',
+      url: `https://deckofcardsapi.com/api/deck/${id}/pile/pile_rotation/list/`
+    })
+    .then (response => {
+
+      setRotationCardSuit(response.data.piles.pile_rotation.cards[0].suit);
+      setRotationCardValue(response.data.piles.pile_rotation.cards[0].value);
 
     });
+
   },[]);
 
 
@@ -48,8 +63,8 @@ function DeckId() {
 
 
   // carta de rotacao
-  const rotationCardValor = '2';
-  const rotationCardNaipe = 'HEARTS';
+  const rotationCardValor = rotationCardValue;
+  const rotationCardNaipe = rotationCardSuit;
 
   // dividir as array e passar quem ta na frente da rotation card pra trás
   
@@ -152,7 +167,7 @@ function DeckId() {
   setPileValueSorted(pile_values_ordenados);
 
 
-},[pileValues, pileSuit]);
+},[pileValues, pileSuit, rotationCardValue, rotationCardSuit]);
 
 
 
@@ -166,6 +181,8 @@ useEffect(() => {
 
 
   var length = inputValue.length;
+
+  if (length >= 5 ) {
   
   for (var x = 0; x < length; x++) {     
       for (var y = 0; y < (length - x - 1); y++) { 
@@ -343,7 +360,8 @@ useEffect(() => {
 
   //console.log(fullHouse);
   setFullHouseCombinations(fullHouse);
-
+  
+  }
    
 },[pileValues, pileSuit]);
 
@@ -381,6 +399,9 @@ useEffect(() => {
 
 
       <h2>Rotation card: </h2>
+      <span>{rotationCardValue} &nbsp; {rotationCardSuit}</span>
+      
+
       
 
       <h2>High card: </h2>
