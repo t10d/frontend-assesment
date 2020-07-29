@@ -11,6 +11,9 @@ function DeckId() {
   const [pileSuitSorted, setPileSuitSorted] = useState([]);
   const [pileValueSorted, setPileValueSorted] = useState([]);
 
+  const [fullHouseCombinations, setFullHouseCombinations] = useState([]);
+
+
 
   useEffect(() => {
     axios({
@@ -142,14 +145,10 @@ function DeckId() {
   for (i=0; i<n; i++) {
     console.log(i + ':' + pile_naipe_ordenados[i] + '-' + pile_values_ordenados[i] );
   }
-*/
+  */
 
   setPileSuitSorted(pile_naipe_ordenados);
   setPileValueSorted(pile_values_ordenados);
-
-
-  
-
 
 
 },[pileValues, pileSuit]);
@@ -157,7 +156,173 @@ function DeckId() {
 
 
 
+// full house combinacoes
+useEffect(() => {
 
+  
+  const inputValue = ['2', '2', '2', '2', '4', '4', '4'];
+  const inputSuit = [ 'H', 'D', 'C', 'S', 'H', 'D', 'C'];
+
+  const valores = [];
+  const ocorrencias = [];
+  var indexValores = 0;
+  var indexOcorrencias = 0;
+
+  valores[indexValores] = inputValue[0];
+  indexValores++;
+
+  ocorrencias[0] = 1;
+
+  var i;
+
+  for ( i=0; i<inputValue.length-1; i++) {
+    if (inputValue[i] !== inputValue[i+1]) {
+      valores[indexValores] = inputValue[i+1];
+      indexValores++;
+      indexOcorrencias++
+      ocorrencias[indexOcorrencias] = 1;
+    } else {
+      ocorrencias[indexOcorrencias]++;
+    }
+  }
+
+
+  var j;
+  var k;
+  var indicesCertos = [];
+      
+
+  var indexTrios = 0;
+  let trios = [[]];
+
+
+  // buscando pelos trios
+  for ( i=0; i<ocorrencias.length; i++) {
+    
+    // salvo os trios quando tem 3 cartas de mesmo valor
+    if(ocorrencias[i] === 3){
+    
+      indicesCertos = [];
+      k=0;
+      
+      for ( j=0; j<inputValue.length; j++ ) {
+        if ( inputValue[j] === valores[i] ) {
+
+          indicesCertos[k] = j;
+          k++;
+        }
+      }
+      
+      trios[indexTrios] = [inputValue[indicesCertos[0]], inputSuit[indicesCertos[0]],
+                           inputValue[indicesCertos[1]], inputSuit[indicesCertos[1]],
+                           inputValue[indicesCertos[2]], inputSuit[indicesCertos[2]]];
+      indexTrios++;
+      
+    }
+
+
+    // se eu tiver 4 cartas de naipes diferentes, tenho 4 combinaçoes de trios possíveis
+    // entao 'ignoro' cada um das cartas, para obter os 4 trios
+
+    if(ocorrencias[i] === 4){
+      
+      indicesCertos = [];
+      k=0;
+      
+      for ( j=0; j<inputValue.length; j++ ) {
+        if ( inputValue[j] === valores[i] ) {
+
+          indicesCertos[k] = j;
+          k++;
+        }
+      }  
+
+      
+      trios[indexTrios] = [inputValue[indicesCertos[0]], inputSuit[indicesCertos[0]],
+                           inputValue[indicesCertos[1]], inputSuit[indicesCertos[1]],
+                           inputValue[indicesCertos[2]], inputSuit[indicesCertos[2]]];
+      indexTrios++ ;
+      
+      trios[indexTrios] = [inputValue[indicesCertos[0]], inputSuit[indicesCertos[0]],
+                           inputValue[indicesCertos[1]], inputSuit[indicesCertos[1]],
+                           inputValue[indicesCertos[3]], inputSuit[indicesCertos[3]]];
+      indexTrios++ ;
+      
+      trios[indexTrios] = [inputValue[indicesCertos[0]], inputSuit[indicesCertos[0]],
+                           inputValue[indicesCertos[2]], inputSuit[indicesCertos[2]],
+                           inputValue[indicesCertos[3]], inputSuit[indicesCertos[3]]];
+      indexTrios++ ;
+      
+      trios[indexTrios] = [inputValue[indicesCertos[1]], inputSuit[indicesCertos[1]],
+                           inputValue[indicesCertos[2]], inputSuit[indicesCertos[2]],
+                           inputValue[indicesCertos[3]], inputSuit[indicesCertos[3]]];
+      indexTrios++;
+
+    }
+  }
+
+ // console.log(trios);
+
+
+  let duplas = [[]];
+  var indexDuplas = 0;
+
+
+  // buscando pelas duplas 
+  for (var l = 0; l<inputValue.length; l++) {       
+    for (var m = 1; m<(inputValue.length); m++) {  
+      
+        // se l<m, pra nao voltar no vetor e ter combinacoes diferentes (a ordem nao importa) 
+        // e se o valor das duas cartas fores iguais, add na matriz(x)
+        if ( ( l<m ) && ( inputValue[l] === inputValue[m] ) ) {
+          
+          duplas[indexDuplas] = [ inputValue[m],inputSuit[m] , inputValue[l],inputSuit[l] ];
+          indexDuplas++;
+              
+      }      
+    }
+  }
+
+ // console.log(duplas);
+
+/**
+ * agora precisamos juntar trios e duplas, verificando as condiçoes possíveis pq nada nessa vida é fácil
+ * 
+ * se eu tenho um trio, nao posso ter uma dupla com aquele mesmo valor pois não temos cartas repetidas no deck
+ * entao vou concatenar as duplas nos trios de valores diferentes
+ * 
+ * **/
+
+
+  let fullHouse = [[]];
+  var indexFullHouse = 0;
+
+
+//  for (var array = 0; array<trios.length; array++) {
+    for (var trio = 0; trio<trios.length; trio++) {
+     
+      console.log();
+
+      for (var dupla = 0; dupla<duplas.length; dupla++) {
+        
+        if ( trios[trio][0] !== duplas[dupla][0] ) {
+          
+          fullHouse[indexFullHouse] = [ trios[trio][0]+trios[trio][1], trios[trio][2]+trios[trio][3], trios[trio][4]+trios[trio][5], 
+                                        duplas[dupla][0]+duplas[dupla][1], + duplas[dupla][2]+duplas[dupla][3] ];
+
+          indexFullHouse++;
+
+        }
+      }
+    }
+//  }
+
+console.log(fullHouse);
+setFullHouseCombinations(fullHouse);
+
+   
+
+},[pileValues, pileSuit]);
 
 
 
@@ -192,11 +357,14 @@ function DeckId() {
 
 
 
-      <h2>Rotation card: 2S </h2>
+      <h2>Rotation card: </h2>
       
-      <h2>High card: 2S</h2>
+
+      <h2>High card: </h2>
+      <span> {pileValueSorted[0]} {pileSuitSorted[0]} </span>
       
-      <h2>Full house combination: none</h2>
+
+      <h2>Full house combination: </h2>
       
     </div>
   );
