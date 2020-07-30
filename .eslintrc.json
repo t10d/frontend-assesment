@@ -33,6 +33,7 @@
     "prettier/prettier": "error",
     "comma-dangle":"off",
     "object-curly-newline": "off",
-    "max-len": ["error", { "code": 120 }]
+    "max-len": ["error", { "code": 120 }],
+    "no-return-assign": "off"
   }
 }
