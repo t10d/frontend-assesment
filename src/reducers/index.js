@@ -1,5 +1,5 @@
 import defaultState from '../utils/json/defaultState.json'
-import { newCards, addCard, resetCards, setResultList } from './functions'
+import { newCards, addCard, resetCards, setResultList, setRotated } from './functions'
 
 export const Reducers = (state = defaultState, action) => {
   switch (action.type) {
@@ -23,6 +23,8 @@ export const Reducers = (state = defaultState, action) => {
       return state
     case 'SET_RESULT_FULLHOUSES':
       return state
+    case 'SET_ROTATED':
+      return setRotated(state, action.rotated)
     default:
       return state
   }

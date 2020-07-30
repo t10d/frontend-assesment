@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Box } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import { setDeck, changePivot, setResultList } from 'actions'
-import { checkPivot, shufleCardsList, getCardList } from 'services/result'
+import { setDeck, changePivot, setResultList, setRotated } from 'actions'
+import { checkPivot, shufleCardsList, getCardList, rotateCardsFromPivot } from 'services/result'
 import Messages from '../Messages'
 
 function Result(props) {
@@ -26,6 +26,8 @@ function Result(props) {
     return <Messages onClose={() => true} severity='error' open={true} message={'Carta de Rotação inválida'} />
   }
   changePivot(validPivot)
+  const rotated = rotateCardsFromPivot(validPivot)
+  setRotated(rotated)
   shufleCardsList(id, shuffleCallback)
   return (
     <>

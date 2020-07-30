@@ -28,3 +28,9 @@ export const setResultList = (state, list) => {
   result.list = list
   return { ...state, ...result }
 }
+
+export const setRotated = (state, rotated) => {
+  const { result } = state
+  result.rotated = rotated
+  return { ...state, ...result }
+}

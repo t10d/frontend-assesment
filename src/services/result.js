@@ -16,4 +16,22 @@ export const shufleCardsList = (deckId, callback) => recreateDeck(deckId, callba
 
 export const getCardList = (deckId, quantity, callback) => getDeckFromAPI(deckId, quantity, callback)
 
+const rotateValues = (values, pivot) => {
+  const value = values.pop()
+  const rotatedValues = [value, ...values]
+  return rotatedValues[0].code === pivot.value ? rotatedValues : rotateValues(rotatedValues, pivot)
+}
+
+const rotateSuits = (suits, pivot) => {
+  const suit = suits.pop()
+  const rotatedSuits = [suit, ...suits]
+  return rotatedSuits[0].value === pivot.suit ? rotatedSuits : rotateSuits(rotatedSuits, pivot)
+}
+
+export const rotateCardsFromPivot = (pivot) => {
+  const cards = rotateValues(valueOrder, pivot)
+  const suits = rotateSuits(suitOrder, pivot)
+  return { cards, suits }
+}
+
 export const processResult = () => {}

@@ -43,3 +43,7 @@ export const setResultBest = (best) => {
 export const setResultFullhouses = (fullhouses) => {
   store.dispatch({ type: 'SET_RESULT_FULLHOUSES', fullhouses })
 }
+
+export const setRotated = (rotated) => {
+  store.dispatch({ type: 'SET_ROTATED', rotated })
+}
