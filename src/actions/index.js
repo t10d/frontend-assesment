@@ -36,10 +36,6 @@ export const setResultOrdered = (ordered) => {
   store.dispatch({ type: 'SET_RESULT_ORDERED', ordered })
 }
 
-export const setResultBest = (best) => {
-  store.dispatch({ type: 'SET_RESULT_BEST', best })
-}
-
 export const setResultFullhouses = (fullhouses) => {
   store.dispatch({ type: 'SET_RESULT_FULLHOUSES', fullhouses })
 }

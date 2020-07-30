@@ -34,3 +34,11 @@ export const setRotated = (state, rotated) => {
   result.rotated = rotated
   return { ...state, ...result }
 }
+
+export const setResultOrdered = (state, ordered) => {
+  const { result } = state
+  result.ordered = ordered
+  const best = ordered[0]
+  result.best = best
+  return { ...state, ...result }
+}

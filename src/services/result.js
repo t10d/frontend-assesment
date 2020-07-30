@@ -34,4 +34,30 @@ export const rotateCardsFromPivot = (pivot) => {
   return { cards, suits }
 }
 
+export const sortBySuit = (list, suits) => {
+  const orderedSuit = [[], [], [], []]
+  suits.forEach((suit, sKey) => {
+    list.forEach((element) => {
+      if (element.suit === suit.name) {
+        orderedSuit[sKey].push(element.code)
+      }
+    })
+  })
+  return orderedSuit
+}
+
+export const sortByValue = (list, values) => {
+  let ordered = []
+  list.forEach((suitArray) => {
+    values.forEach((cardValue) => {
+      suitArray.forEach((card) => {
+        if (cardValue.code === card.charAt(0)) {
+          ordered = [...ordered, card]
+        }
+      })
+    })
+  })
+  return ordered
+}
+
 export const processResult = () => {}
