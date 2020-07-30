@@ -5,8 +5,7 @@ import { Route as ReactDOMRoute } from 'react-router-dom'
 const Route = ({ component: Component, ...rest }) => <ReactDOMRoute {...rest} render={() => <Component {...rest} />} />
 
 Route.propTypes = {
-  isPrivate: PropTypes.bool,
-  component: PropTypes.node
+  component: PropTypes.func
 }
 
 export default Route

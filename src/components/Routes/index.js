@@ -8,7 +8,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route path='/deck/new' exact component={Layout} />
-      <Route path='/deck/:id' exact component={Result} />
+      <Route path='/deck/:id/:pivot' exact component={Result} />
       <Redirect from='*' to='/deck/new' />
     </Switch>
   </BrowserRouter>
