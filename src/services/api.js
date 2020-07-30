@@ -23,11 +23,11 @@ export const createDeck = async (cards, callback) => {
   return call
 }
 
-export const recreateDeck = (deckId) => {
+export const recreateDeck = (deckId, callback) => {
   const url = `${API}/${deckId}/shuffle/`
-  return callAPI(url)
+  return callAPI(url, callback)
 }
-export const getDeckFromAPI = (deckId, quantity) => {
+export const getDeckFromAPI = (deckId, quantity, callback) => {
   const url = `${API}/${deckId}/draw/?count=${quantity}`
-  return callAPI(url)
+  return callAPI(url, callback)
 }

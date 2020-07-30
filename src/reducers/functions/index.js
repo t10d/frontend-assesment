@@ -22,3 +22,9 @@ export const resetCards = (state) => {
   const cards = state.cards.map(() => empty)
   return { ...state, pivot: empty, cards }
 }
+
+export const setResultList = (state, list) => {
+  const { result } = state
+  result.list = list
+  return { ...state, ...result }
+}

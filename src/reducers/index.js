@@ -1,5 +1,5 @@
 import defaultState from '../utils/json/defaultState.json'
-import { newCards, addCard, resetCards } from './functions'
+import { newCards, addCard, resetCards, setResultList } from './functions'
 
 export const Reducers = (state = defaultState, action) => {
   switch (action.type) {
@@ -16,7 +16,7 @@ export const Reducers = (state = defaultState, action) => {
     case 'SET_DECK':
       return { ...state, deck: action.deck }
     case 'SET_RESULT_LIST':
-      return state
+      return setResultList(state, action.list)
     case 'SET_RESULT_ORDERED':
       return state
     case 'SET_RESULT_BEST':
