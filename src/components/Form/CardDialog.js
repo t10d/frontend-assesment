@@ -15,8 +15,8 @@ import { addNewCard, changePivot } from 'actions'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import suitOrder from 'utils/json/suitOrder.json'
-import valueOrder from 'utils/json/valueOrder.json'
+import suitOrder from 'utils/js/suits'
+import valueOrder from 'utils/js/values'
 import Messages from '../Messages'
 
 const useStyles = makeStyles((theme) => ({

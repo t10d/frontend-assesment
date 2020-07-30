@@ -1,5 +1,5 @@
-import suitOrder from 'utils/json/suitOrder'
-import valueOrder from 'utils/json/valueOrder'
+import suitOrder from 'utils/js/suits'
+import valueOrder from 'utils/js/values'
 import { recreateDeck, getDeckFromAPI } from './api'
 
 const validCard = (card) => {
