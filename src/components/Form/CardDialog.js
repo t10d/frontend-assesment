@@ -15,9 +15,12 @@ import { addNewCard, changePivot } from 'actions'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import suitOrder from 'utils/js/suits'
-import valueOrder from 'utils/js/values'
+import suits from 'utils/js/suits'
+import values from 'utils/js/values'
 import Messages from '../Messages'
+
+const suitOrder = suits()
+const valueOrder = values()
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -32,33 +35,31 @@ const useStyles = makeStyles((theme) => ({
 
 function CardDialog({ open, onClose, selected = null, pivot = false }) {
   const classes = useStyles()
-  const [suit, setSuit] = useState('')
-  const [value, setValue] = useState('')
+  const [option, setOption] = useState({ suit: '', value: '' })
   const [error, setError] = useState(false)
   const { cards } = useSelector((state) => state)
 
   useEffect(() => {
-    setSuit('')
-    setValue('')
+    setOption({ suit: '', value: '' })
   }, [open])
 
   function submitPivot() {
     onClose()
-    return changePivot({ suit, value })
+    return changePivot(option)
   }
 
   function submitCard() {
-    const found = cards.find((card) => card.value === value && card.suit === suit)
+    const found = cards.find((card) => card.value === option.value && card.suit === option.suit)
     if (found) {
       setError('Carta já adicionada anteriormente')
       return {}
     }
     onClose()
-    return addNewCard(selected, { suit, value })
+    return addNewCard(selected, option)
   }
 
   function handleSubmit() {
-    if (!suit || !value) {
+    if (!option.suit || !option.value) {
       setError('Selecione um NAIPE e um VALOR')
       return {}
     }
@@ -76,8 +77,8 @@ function CardDialog({ open, onClose, selected = null, pivot = false }) {
               <Select
                 labelId='demo-simple-select-filled-label'
                 id='demo-simple-select-filled'
-                value={suit}
-                onChange={(e) => setSuit(e.target.value)}
+                value={option.suit}
+                onChange={(e) => setOption({ suit: e.target.value, value: option.value })}
               >
                 {suitOrder.map((suitOption) => (
                   <MenuItem key={suitOption.value} value={suitOption.value}>
@@ -93,8 +94,8 @@ function CardDialog({ open, onClose, selected = null, pivot = false }) {
               <Select
                 labelId='demo-simple-select-filled-label'
                 id='demo-simple-select-filled'
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={option.value}
+                onChange={(e) => setOption({ suit: option.suit, value: e.target.value })}
               >
                 {valueOrder.map((valueOption) => (
                   <MenuItem key={valueOption.value} value={valueOption.code}>
@@ -108,7 +109,12 @@ function CardDialog({ open, onClose, selected = null, pivot = false }) {
             <Divider variant='fullWidth' />
           </ListItem>
           <ListItem style={{ justifyContent: 'flex-end' }}>
-            <Button disabled={!suit || !value} onClick={() => handleSubmit()} variant='contained' color='primary'>
+            <Button
+              disabled={!option.suit || !option.value}
+              onClick={() => handleSubmit()}
+              variant='contained'
+              color='primary'
+            >
               Selecionar
             </Button>
           </ListItem>
