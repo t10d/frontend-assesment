@@ -2,11 +2,14 @@ import defaultState from '../utils/js/state'
 import { newCards, addCard, resetCards, setResultList, setRotated, setResultOrdered } from './functions'
 
 export const Reducers = (state = defaultState(), action) => {
+  const { settings } = state
   switch (action.type) {
     case 'CHANGE_QUANTITY':
-      return { ...state, quantity: action.value, cards: newCards(state, action.value) }
+      settings.quantity = action.value
+      return { ...state, settings, cards: newCards(state, action.value) }
     case 'CHANGE_VISUAL':
-      return { ...state, visual: action.value }
+      settings.visual = action.value
+      return { ...state, settings }
     case 'ADD_CARD':
       return { ...state, cards: addCard(state, action.position, action.card) }
     case 'CHANGE_PIVOT':

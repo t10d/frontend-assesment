@@ -1,7 +1,9 @@
 {
+  "settings" : {
+    "quantity": 10,
+    "visual": "real"
+  },
   "deck": null, 
-  "quantity": 10,
-  "visual": "real",
   "result" : {
     "list": [],
     "ordered": [],
