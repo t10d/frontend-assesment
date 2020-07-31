@@ -8,7 +8,8 @@ import Messages from '../Messages'
 const defaultError = { message: false, severity: 'error' }
 
 function Buttons() {
-  const { cards, pivot } = useSelector((state) => state)
+  const cards = useSelector((state) => state.cards)
+  const pivot = useSelector((state) => state.pivot)
   const [error, setError] = useState(defaultError)
 
   function submitCallBack(response) {

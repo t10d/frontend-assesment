@@ -37,7 +37,7 @@ function CardDialog({ open, onClose, selected = null, pivot = false }) {
   const classes = useStyles()
   const [option, setOption] = useState({ suit: '', value: '' })
   const [error, setError] = useState(false)
-  const { cards } = useSelector((state) => state)
+  const cards = useSelector((state) => state.cards)
 
   useEffect(() => {
     setOption({ suit: '', value: '' })
