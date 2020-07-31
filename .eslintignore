@@ -4,3 +4,4 @@ build
 /src/serviceWorker.js
 /src/store/index.js
 /src/test/**
+/mocha/**
