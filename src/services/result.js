@@ -1,6 +1,9 @@
-import suitOrder from 'utils/js/suits'
-import valueOrder from 'utils/js/values'
+import suitFunc from 'utils/js/suits'
+import valueFunc from 'utils/js/values'
 import { recreateDeck, getDeckFromAPI } from './api'
+
+const suitOrder = suitFunc()
+const valueOrder = valueFunc()
 
 const validCard = (card) => {
   const value = card.charAt(0)
@@ -16,15 +19,15 @@ export const shufleCardsList = (deckId, callback) => recreateDeck(deckId, callba
 
 export const getCardList = (deckId, quantity, callback) => getDeckFromAPI(deckId, quantity, callback)
 
-const rotateValues = (values, pivot) => {
-  const value = values.pop()
-  const rotatedValues = [value, ...values]
+const rotateValues = (list, pivot) => {
+  const value = list.pop()
+  const rotatedValues = [value, ...list]
   return rotatedValues[0].code === pivot.value ? rotatedValues : rotateValues(rotatedValues, pivot)
 }
 
-const rotateSuits = (suits, pivot) => {
-  const suit = suits.pop()
-  const rotatedSuits = [suit, ...suits]
+const rotateSuits = (list, pivot) => {
+  const suit = list.pop()
+  const rotatedSuits = [suit, ...list]
   return rotatedSuits[0].value === pivot.suit ? rotatedSuits : rotateSuits(rotatedSuits, pivot)
 }
 

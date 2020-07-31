@@ -4,10 +4,11 @@ import { Box } from '@material-ui/core'
 import InitialCards from '../../Cards/InitialsCard'
 
 function Ordered() {
-  const { result } = useSelector((state) => state)
-  const { best, ordered } = result
+  const {
+    result: { best, ordered }
+  } = useSelector((state) => state)
   return (
-    <Box class='ordered-box'>
+    <Box className='ordered-box'>
       {best && (
         <Box className='ssj-card'>
           <h2>Carta SSJ</h2>

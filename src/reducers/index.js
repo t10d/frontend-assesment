@@ -1,7 +1,7 @@
-import stateDefault from '../utils/js/state'
+import defaultState from '../utils/js/state'
 import { newCards, addCard, resetCards, setResultList, setRotated, setResultOrdered } from './functions'
 
-export const Reducers = (state = stateDefault, action) => {
+export const Reducers = (state = defaultState(), action) => {
   switch (action.type) {
     case 'CHANGE_QUANTITY':
       return { ...state, quantity: action.value, cards: newCards(state, action.value) }
