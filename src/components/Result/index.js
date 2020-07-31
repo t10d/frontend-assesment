@@ -3,14 +3,8 @@ import { changePivot, setDeck, setResultList, setRotated, setResultOrdered } fro
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import {
-  checkPivot,
-  getCardList,
-  rotateCardsFromPivot,
-  shufleCardsList,
-  sortBySuit,
-  sortByValue
-} from 'services/result'
+import { getCardList, shufleCardsList } from 'services/result'
+import { checkPivot, rotateCardsFromPivot, sortBySuit, sortByValue } from 'utils/functions/Result'
 import Messages from '../Messages'
 import Fullhouses from './Fullhouses'
 import Ordered from './Ordered'

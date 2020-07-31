@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Box } from '@material-ui/core'
-import { formDuples, formTriples, formFullhouses } from 'services/fullhouses'
+import { formDuples, formTriples, formFullhouses } from 'utils/functions/Fullhouse'
 import { Alert } from '@material-ui/lab'
 import InitialCards from '../../Cards/InitialsCard'
 
