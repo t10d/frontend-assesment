@@ -1,0 +1,37 @@
+.deckid-container {
+    padding: 6vh 4vw;
+  
+    display: flex;
+    flex-direction: column;  
+    align-items: center;  
+}
+
+
+.deckid-container h1 {
+    padding-bottom: 5vh;
+    text-align: center;
+}
+
+.deckid-container .cards{
+    width: 100%;
+    padding: 0 1vw;
+    
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.deckid-container .cards .card {
+    padding: 0 1vw;
+}
+
+.deckid-container h2 {
+    padding: 50px 0 10px 0;
+    
+}
+
+  
+  
+  
+  

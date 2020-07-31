@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400&display=swap');
+  
+.card-container {
+  width: 110px;
+  height: 160px;
+
+  display: flex;  
+  justify-content: center;
+  align-items: center; 
+  
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 6px;  
+
+  font-family: 'Cinzel Decorative', cursive;    
+}
+
+.card-container div {
+  width: 80px;
+  height: 130px;
+  border: 1px solid yellow;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.card-container span:first-child {
+    font-size: 30px;
+}
+
+.card-container span {
+  font-size: 24px;
+}
+
+.blackCard {
+  color: #000;
+}
+
+.redCard{
+  font-size: 24px;
+  color: red;
+}
+
