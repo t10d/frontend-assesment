@@ -14,6 +14,7 @@ function Result(props) {
   const { id, pivot } = props.computedMatch.params
   const validPivot = checkPivot(pivot)
   const visual = useSelector((state) => state.settings.visual)
+  const oldOrdered = useSelector((state) => state.result.ordered)
 
   function startSorting(rotated, cards) {
     const sortedBySuit = sortBySuit(cards, rotated.suits)
@@ -41,13 +42,15 @@ function Result(props) {
     getCardList(id, remaining, getCardsCallback)
   }
 
+  function getBack() {
+    window.location.href = '/'
+  }
+  changePivot(validPivot)
   if (validPivot === false) {
     return <Messages onClose={() => true} severity='error' open={true} message={'Carta de Rotação inválida'} />
   }
-  changePivot(validPivot)
-  shufleCardsList(id, shuffleCallback)
-  function getBack() {
-    window.location.href = '/'
+  if (oldOrdered.length === 0) {
+    shufleCardsList(id, shuffleCallback)
   }
 
   return (
