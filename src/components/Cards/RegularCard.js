@@ -1,10 +1,13 @@
 import { Box, Paper } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import suitsDefault from 'utils/js/suits'
+import valuesDefault from 'utils/js/values'
+
+const suits = suitsDefault()
+const values = valuesDefault()
 
 function RegularCard({ card }) {
-  const { suits, values } = useSelector((state) => state.defaults)
   const suitObj = suits.find((suit) => suit.value === card.suit)
   const valueObj = values.find((v) => v.code === card.value)
   if (!suitObj || !valueObj) {
