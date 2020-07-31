@@ -7,9 +7,8 @@ import buttonsQuantity from './buttonsQuantity.json'
 import buttonsVisual from './buttonsVisual.json'
 
 function Settings() {
-  const {
-    settings: { quantity, visual }
-  } = useSelector((state) => state)
+  const quantity = useSelector((state) => state.settings.quantity)
+  const visual = useSelector((state) => state.settings.visual)
   return (
     <Box className='settings-box'>
       <List>

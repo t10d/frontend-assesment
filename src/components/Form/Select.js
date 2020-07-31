@@ -5,7 +5,7 @@ import Cards from '../Cards'
 import CardDialog from './CardDialog'
 
 function Select() {
-  const { cards } = useSelector((state) => state)
+  const cards = useSelector((state) => state.cards)
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(null)
 

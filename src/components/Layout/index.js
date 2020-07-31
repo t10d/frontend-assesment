@@ -4,9 +4,7 @@ import { Grid, Box } from '@material-ui/core'
 import Form from '../Form'
 
 function Layout() {
-  const {
-    settings: { visual }
-  } = useSelector((state) => state)
+  const visual = useSelector((state) => state.settings.visual)
   return (
     <Box className='layout'>
       <Grid container className={`cards-visual-${visual}`}>

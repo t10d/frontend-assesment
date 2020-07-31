@@ -5,7 +5,7 @@ import Cards from '../Cards'
 import CardDialog from './CardDialog'
 
 function Pivot() {
-  const { pivot } = useSelector((state) => state)
+  const pivot = useSelector((state) => state.pivot)
   const [open, setOpen] = useState(false)
   return (
     <>

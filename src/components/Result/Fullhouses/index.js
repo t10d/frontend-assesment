@@ -6,9 +6,8 @@ import { Alert } from '@material-ui/lab'
 import InitialCards from '../../Cards/InitialsCard'
 
 function Fullhouses() {
-  const {
-    result: { best, ordered }
-  } = useSelector((state) => state)
+  const best = useSelector((state) => state.result.best)
+  const ordered = useSelector((state) => state.result.ordered)
   if (!best || !ordered) {
     return <></>
   }
