@@ -7,13 +7,11 @@
   box-sizing: border-box;
 }
 
+
 body {
   font: 400 14px 'Ubuntu', sans-serif;
-  background: #f0f0f5;
-  -webkit-flow-smoothing: antialiased;
-
-  background-color: #406C4B;
   color: #fff;
+  background: radial-gradient(ellipse farthest-corner at center top, #17b794, #09493b);
 }
 
 p {

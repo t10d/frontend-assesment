@@ -33,7 +33,6 @@
 .newdeck-container ul li span {
   width: 100%;
   text-align: center;
-  color: #ccc;
   font-size: 16px;
   font-weight: 700;
 }
@@ -46,7 +45,7 @@
   border-radius: 8px;
   font-size: 30px;
 
-  background-color: #385e42;
+  background-color: rgba(0, 0, 0, 0.1);
 
   display: flex;  
   justify-content: center;
