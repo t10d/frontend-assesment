@@ -24,8 +24,9 @@ function Buttons() {
 
   function onsubmit() {
     const list = cards.filter((card) => card.value !== null && card.suit !== null)
-    if (list.length === 0 || !pivot.value) {
-      setError('Sem Cartas Definidas')
+    if (list.length === 0 || pivot.value === null) {
+      setError({ message: 'Sem Cartas Definidas', severity: 'error' })
+      return
     }
     submitCardsToDeck(cards, submitCallBack)
   }

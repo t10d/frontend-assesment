@@ -17,7 +17,7 @@ function Fullhouses() {
   const fullHouses = formFullhouses(duples, triples)
   return (
     <Box style={{ display: 'flex', flexDirection: 'column', margin: '20px 0px' }}>
-      <h2 style={{ color: '#fff' }}>FullHouse Lista</h2>
+      <h2 style={{ color: '#fff' }}>Lista de FULLHOUSE</h2>
       <Box className='fullhouses-box'>
         {fullHouses.map((list) => (
           <Box
