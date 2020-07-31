@@ -5,22 +5,21 @@ import { resetCards } from 'actions'
 import submitCardsToDeck from 'services/submit'
 import Messages from '../Messages'
 
+const defaultError = { message: false, severity: 'error' }
+
 function Buttons() {
   const { cards, pivot } = useSelector((state) => state)
-  const [error, setError] = useState(false)
-  const [severity, setSeverity] = useState('error')
+  const [error, setError] = useState(defaultError)
 
   function submitCallBack(response) {
     const { data = false } = response
     if (data) {
       const pivotString = pivot.value + pivot.suit
-      setSeverity('success')
-      setError('Baralho Salvo')
+      setError({ message: 'Baralho Salvo', severity: 'success' })
       window.location.href = `/deck/${data.deck_id}/${pivotString}`
       return
     }
-    setSeverity('error')
-    setError('Falha ao salvar baralho')
+    setError({ message: 'Falha ao salvar baralho', severity: 'error' })
   }
 
   function onsubmit() {
@@ -40,7 +39,14 @@ function Buttons() {
           Enviar Cartas
         </Button>
       </Box>
-      {error && <Messages onClose={() => setError(false)} severity={severity} open={error !== false} message={error} />}
+      {error.message !== false && (
+        <Messages
+          onClose={() => setError(defaultError)}
+          severity={error.severity}
+          open={error.message !== false}
+          message={error.message}
+        />
+      )}
     </>
   )
 }
