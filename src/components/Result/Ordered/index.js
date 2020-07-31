@@ -14,7 +14,7 @@ function Ordered() {
           <InitialCards inital={best} />
         </Box>
       )}
-      {ordered && (
+      {ordered && best && (
         <Box className='ordered-cards-box'>
           <h2 style={{ color: '#fff' }}>Cartas em ordem</h2>
           <Box className='list-ordered'>
