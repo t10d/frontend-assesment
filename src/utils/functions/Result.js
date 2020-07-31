@@ -57,5 +57,3 @@ export const sortByValue = (list, values) => {
   })
   return ordered
 }
-
-export const processResult = () => {}
