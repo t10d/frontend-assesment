@@ -1,9 +1,6 @@
 import chai from 'chai'
-import like from 'chai-like'
 import { checkPivot, rotateCardsFromPivot, sortBySuit, sortByValue } from '../src/utils/functions/Result'
 import { expectedRotated, listToOrder, expectedSortBySuit, expectedSortByValue } from './vars'
-
-chai.use(like)
 
 describe('RESULT FUNCTIONS', () => {
   it('1. Check Pivot', (done) => {
@@ -16,7 +13,7 @@ describe('RESULT FUNCTIONS', () => {
     done()
   })
   it('2. Rotate From Pivot', (done) => {
-    const pivot = {value: '8', suit: 'H'}
+    const pivot = { value: '8', suit: 'H' }
     const { cards, suits } = rotateCardsFromPivot(pivot)
     suits.forEach((suit, key) => {
       chai.expect(suit.name).to.be.equals(expectedRotated.suits[key].name)

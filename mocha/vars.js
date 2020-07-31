@@ -23,20 +23,40 @@ export const expectedRotated = {
 }
 
 export const listToOrder = [
-  { code: '2D', suit: 'DIAMONDS'},
-  { code: '0C', suit: 'CLUBS'},
-  { code: '5D', suit: 'DIAMONDS'},
-  { code: 'JH', suit: 'HEARTS'},
-  { code: 'KS', suit: 'SPADES'},
-  { code: 'AD', suit: 'DIAMONDS'},
-  { code: '2S', suit: 'SPADES'},
-  { code: '3H', suit: 'HEARTS'}
+  { code: '2D', suit: 'DIAMONDS' },
+  { code: '0C', suit: 'CLUBS' },
+  { code: '5D', suit: 'DIAMONDS' },
+  { code: 'JH', suit: 'HEARTS' },
+  { code: 'KS', suit: 'SPADES' },
+  { code: 'AD', suit: 'DIAMONDS' },
+  { code: '2S', suit: 'SPADES' },
+  { code: '3H', suit: 'HEARTS' }
 ]
 
-export const expectedSortBySuit = [['JH','3H'],['2D','5D','AD'],['0C'],['KS','2S']]
+export const expectedSortBySuit = [['JH', '3H'], ['2D', '5D', 'AD'], ['0C'], ['KS', '2S']]
 
-export const expectedSortByValue = [
-  '3H', 'JH', '5D',
-  '2D', 'AD', '0C',
-  '2S', 'KS'
+export const expectedSortByValue = ['3H', 'JH', '5D', '2D', 'AD', '0C', '2S', 'KS']
+
+export const listFullhouse1 = expectedSortByValue
+export const listFullhouse2 = ['3H', 'JH', '3D', 'JD', '3C', 'JC', '9S', 'KS']
+export const expectedDuples1 = [['2D', '2S']]
+export const expectedDuples2 = [
+  ['3H', '3D'],
+  ['3H', '3C'],
+  ['JH', 'JD'],
+  ['JH', 'JC'],
+  ['3D', '3C'],
+  ['JD', 'JC']
+]
+export const expectedTriples = [
+  ['3H', '3D', '3C'],
+  ['JH', 'JD', 'JC']
+]
+export const expectedFullhouse = [
+  ['JH', 'JD', 'JC', '3H', '3D'],
+  ['JH', 'JD', 'JC', '3H', '3C'],
+  ['3H', '3D', '3C', 'JH', 'JD'],
+  ['3H', '3D', '3C', 'JH', 'JC'],
+  ['JH', 'JD', 'JC', '3D', '3C'],
+  ['3H', '3D', '3C', 'JD', 'JC']
 ]
