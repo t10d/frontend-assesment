@@ -9,7 +9,7 @@ function Pivot() {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <Box className='form-pivot'>
+      <Box data-testid='pivot-area' className='form-pivot'>
         <Button className='new-card-button' onClick={() => setOpen(true)}>
           <Cards card={pivot} />
         </Button>

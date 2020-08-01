@@ -16,7 +16,7 @@ function Select() {
 
   return (
     <>
-      <Box className='form-select'>
+      <Box data-testid='list-cards-area' className='form-select'>
         {cards.map((card, k) => (
           <Button key={k} className='new-card-button' onClick={() => onCardClick(k)}>
             <Cards key={k} card={card} />
