@@ -1,14 +1,11 @@
 import suitFunc from '../js/suits'
 import valueFunc from '../js/values'
 
-const suitOrder = suitFunc()
-const valueOrder = valueFunc()
-
 const validCard = (card) => {
   const value = card.charAt(0)
   const suit = card.charAt(1)
-  const suitObj = suitOrder.find((el) => el.value === suit)
-  const valueObj = valueOrder.find((el) => el.code === value)
+  const suitObj = suitFunc().find((el) => el.value === suit)
+  const valueObj = valueFunc().find((el) => el.code === value)
   return suitObj && valueObj ? { suit, value } : false
 }
 
@@ -27,8 +24,8 @@ const rotateSuits = (list, pivot) => {
 }
 
 export const rotateCardsFromPivot = (pivot) => {
-  const cards = rotateValues(valueOrder, pivot)
-  const suits = rotateSuits(suitOrder, pivot)
+  const cards = rotateValues(valueFunc(), pivot)
+  const suits = rotateSuits(suitFunc(), pivot)
   return { cards, suits }
 }
 
@@ -61,7 +58,7 @@ export const sortByValue = (list, values) => {
 export const transformOldListofCards = (cards) => {
   const filteredCards = cards.filter((card) => card.value !== null && card.suit != null)
   const list = filteredCards.map((card) => {
-    const cardSuit = suitOrder.find((suit) => suit.value === card.suit)
+    const cardSuit = suitFunc().find((suit) => suit.value === card.suit)
     return { code: `${card.value}${card.suit}`, value: card.value, suit: cardSuit.name }
   })
   return list

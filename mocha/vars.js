@@ -60,3 +60,27 @@ export const expectedFullhouse = [
   ['JH', 'JD', 'JC', '3D', '3C'],
   ['3H', '3D', '3C', 'JD', 'JC']
 ]
+
+export const cardsToTransform = [
+  {value: 'A', suit: 'H'},
+  {value: 'K', suit: 'C'},
+  {value: 'Q', suit: 'S'},
+  {value: 'J', suit: 'D'},
+  {value: '0', suit: 'H'},
+  {value: '9', suit: 'C'},
+  {value: '8', suit: 'S'},
+  {value: '7', suit: 'D'},
+  {value: '6', suit: 'H'},
+]
+
+export const expectedTransformOldListofCards = [
+  { code: 'AH', value: 'A', suit: 'HEARTS' },
+  { code: 'KC', value: 'K', suit: 'CLUBS' },
+  { code: 'QS', value: 'Q', suit: 'SPADES' },
+  { code: 'JD', value: 'J', suit: 'DIAMONDS' },
+  { code: '0H', value: '0', suit: 'HEARTS' },
+  { code: '9C', value: '9', suit: 'CLUBS' },
+  { code: '8S', value: '8', suit: 'SPADES' },
+  { code: '7D', value: '7', suit: 'DIAMONDS' },
+  { code: '6H', value: '6', suit: 'HEARTS' }
+]

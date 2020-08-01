@@ -1,6 +1,19 @@
 import chai from 'chai'
-import { checkPivot, rotateCardsFromPivot, sortBySuit, sortByValue } from '../src/utils/functions/Result'
-import { expectedRotated, listToOrder, expectedSortBySuit, expectedSortByValue } from './vars'
+import {
+  checkPivot,
+  rotateCardsFromPivot,
+  sortBySuit,
+  sortByValue,
+  transformOldListofCards
+} from '../src/utils/functions/Result'
+import {
+  expectedRotated,
+  listToOrder,
+  expectedSortBySuit,
+  expectedSortByValue,
+  cardsToTransform,
+  expectedTransformOldListofCards
+} from './vars'
 
 describe('RESULT FUNCTIONS', () => {
   it('1. Check Pivot', (done) => {
@@ -31,6 +44,11 @@ describe('RESULT FUNCTIONS', () => {
   it('4. Sort By Value', (done) => {
     const result = sortByValue(expectedSortBySuit, expectedRotated.cards)
     chai.expect(result).to.be.eql(expectedSortByValue)
+    done()
+  })
+  it('4. Transform Old List of Cards to New', (done) => {
+    const result = transformOldListofCards(cardsToTransform)
+    chai.expect(result).to.be.eql(expectedTransformOldListofCards)
     done()
   })
 }).timeout(5000)
