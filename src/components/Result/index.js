@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getCardList, shufleCardsList } from 'services/result'
-import { checkPivot, rotateCardsFromPivot, sortBySuit, sortByValue } from 'utils/functions/Result'
+import { checkPivot, rotateCardsFromPivot, sortBySuit, sortByValue, transformOldListofCards } from 'utils/functions/Result'
 import Messages from '../Messages'
 import Fullhouses from './Fullhouses'
 import Ordered from './Ordered'
@@ -15,6 +15,7 @@ function Result(props) {
   const validPivot = checkPivot(pivot)
   const visual = useSelector((state) => state.settings.visual)
   const oldOrdered = useSelector((state) => state.result.ordered)
+  const oldCards = useSelector((state) => state.cards)
 
   function startSorting(rotated, cards) {
     const sortedBySuit = sortBySuit(cards, rotated.suits)
@@ -49,8 +50,17 @@ function Result(props) {
   if (validPivot === false) {
     return <Messages onClose={() => true} severity='error' open={true} message={'Carta de Rotação inválida'} />
   }
-  if (oldOrdered.length === 0) {
+
+  if (oldOrdered.length === 0 && oldCards.every((card) => card.suit === null && card.value === null)) {
     shufleCardsList(id, shuffleCallback)
+  }
+
+  if (oldOrdered.length === 0 && !oldCards.every((card) => card.suit === null && card.value === null)) {
+    const cards = transformOldListofCards(oldCards)
+    const rotated = rotateCardsFromPivot(validPivot)
+    setRotated(rotated)
+    setResultList(cards)
+    startSorting(rotated, cards)
   }
 
   return (

@@ -57,3 +57,12 @@ export const sortByValue = (list, values) => {
   })
   return ordered
 }
+
+export const transformOldListofCards = (cards) => {
+  const filteredCards = cards.filter((card) => card.value !== null && card.suit != null)
+  const list = filteredCards.map((card) => {
+    const cardSuit = suitOrder.find((suit) => suit.value === card.suit)
+    return { code: `${card.value}${card.suit}`, value: card.value, suit: cardSuit.name }
+  })
+  return list
+}
