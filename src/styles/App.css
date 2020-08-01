@@ -84,7 +84,7 @@ footer svg {
 .form-buttons {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px 0px;
   width: 100%;
   background: rgba(0,0,0, 0.15);

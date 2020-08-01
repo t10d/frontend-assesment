@@ -1,5 +1,5 @@
 import defaultState from '../utils/js/state'
-import { newCards, addCard, resetCards, setResultList, setRotated, setResultOrdered } from './functions'
+import { newCards, addCard, resetCards, setResultList, setRotated, setResultOrdered, randomCards } from './functions'
 
 export const Reducers = (state = defaultState(), action) => {
   const { settings } = state
@@ -26,6 +26,8 @@ export const Reducers = (state = defaultState(), action) => {
       return state
     case 'SET_ROTATED':
       return setRotated(state, action.rotated)
+    case 'RANDOM_CARDS':
+      return randomCards(state)
     default:
       return state
   }

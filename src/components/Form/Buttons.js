@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Box, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import { resetCards } from 'actions'
+import { resetCards, randomCards } from 'actions'
 import submitCardsToDeck from 'services/submit'
 import Messages from '../Messages'
 
@@ -36,9 +36,14 @@ function Buttons() {
   return (
     <>
       <Box className='form-buttons'>
-        <Button onClick={() => resetCards()} variant='contained' color='secondary'>
-          Limpar Cartas
-        </Button>
+        <Box>
+          <Button onClick={() => randomCards()} variant='contained' color='default'>
+            Lista Aleatória
+          </Button>
+          <Button onClick={() => resetCards()} variant='contained' color='secondary'>
+            Limpar Cartas
+          </Button>
+        </Box>
         <Button variant='contained' onClick={onsubmit} color='primary'>
           Enviar Cartas
         </Button>

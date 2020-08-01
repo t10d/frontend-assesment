@@ -43,3 +43,7 @@ export const setResultFullhouses = (fullhouses) => {
 export const setRotated = (rotated) => {
   store.dispatch({ type: 'SET_ROTATED', rotated })
 }
+
+export const randomCards = () => {
+  store.dispatch({ type: 'RANDOM_CARDS' })
+}
