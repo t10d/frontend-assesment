@@ -7,7 +7,7 @@ function Layout() {
   const visual = useSelector((state) => state.settings.visual)
   return (
     <Box className='layout'>
-      <Grid container className={`cards-visual-${visual}`}>
+      <Grid container style={{ minWidth: 620, flexWrap: 'wrap' }} className={`cards-visual-${visual}`}>
         <Form />
       </Grid>
     </Box>

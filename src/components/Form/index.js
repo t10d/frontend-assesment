@@ -7,10 +7,10 @@ import Buttons from './Buttons'
 function Form() {
   return (
     <>
-      <Grid item xs={10}>
+      <Grid style={{ width: '75%', flexWrap: 'wrap', minWidth: 500, justifyContent: 'center' }} item xs={10}>
         <Select />
       </Grid>
-      <Grid item xs={2}>
+      <Grid style={{ flexGrow: 1, maxWidth: '100%' }} item xs={2}>
         <Pivot />
       </Grid>
       <Grid item xs={12}>

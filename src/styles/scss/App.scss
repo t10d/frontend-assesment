@@ -1,8 +1,11 @@
 body {
   text-align: center;
-  background: url("/bg2.png") left top repeat, url("/bg1.png") left top repeat, radial-gradient(circle, #0ba100 40%, #0f5d00 100%);
-  overflow-x: hidden;
-  min-width: 620px;
+  background:
+    url('/bg2.png') left top repeat,
+    url('/bg1.png') left top repeat,
+    radial-gradient(circle, rgba(11, 161, 0, 1) 40%, rgba(15, 93, 0, 1) 100%);
+    overflow-x: hidden;
+    min-width: 620px;
 }
 
 .layout {
@@ -124,7 +127,7 @@ footer svg {
 .game-card {
   width: 110px;
   height: 160px;
-  background: linear-gradient(158deg, white 55%, #c8c8c8 100%);
+  background: linear-gradient(158deg, rgba(255, 255, 255, 1) 55%, rgba(200, 200, 200, 1) 100%);
   margin: 5px;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -162,7 +165,7 @@ footer svg {
   width: 86px;
   height: 137px;
   margin: 10px;
-  background: url("/pattern1.png") left top repeat;
+  background: url('/pattern1.png') left top repeat;
 }
 
 .cards-visual-min .empty-pattern {
@@ -170,7 +173,7 @@ footer svg {
   width: 30px;
   height: 55px;
   margin: 12px;
-  background: url("/pattern2.png") left top repeat;
+  background: url('/pattern2.png') left top repeat;
 }
 
 .cards-visual-real .card-value1 {
@@ -215,7 +218,7 @@ footer svg {
   right: 10px;
   font-size: 19px;
   font-weight: 800;
-  transform: rotate(180deg);
+  transform: rotate(180deg)
 }
 
 .cards-visual-min .card-value2 {
@@ -245,12 +248,14 @@ footer svg {
 
 .ssj-card h2 {
   color: gold;
-  text-shadow: 0px 0px 3px 3px rgba(255, 204, 0, 0.5), inset 0px 0px 7px 7px rgba(255, 204, 0, 0.3);
+  text-shadow: 0px 0px 3px 3px rgba(255, 204, 0, 0.5),
+    inset 0px 0px 7px 7px rgba(255, 204, 0, 0.3);
 }
 
 .ssj-card .game-card {
   border: 2px solid gold;
-  box-shadow: 0px 0px 3px 3px rgba(255, 204, 0, 0.5), inset 0px 0px 7px 7px rgba(255, 204, 0, 0.3);
+  box-shadow: 0px 0px 3px 3px rgba(255, 204, 0, 0.5),
+    inset 0px 0px 7px 7px rgba(255, 204, 0, 0.3);
 }
 
 .ordered-cards-box {
@@ -280,10 +285,8 @@ footer svg {
     margin: 0px 10px;
     background: #ccc;
     color: #333;
-  }
-  header button.settings svg {
-    color: #333;
+    svg {
+      color: #333;
+    }
   }
 }
-
-/*# sourceMappingURL=App.css.map */

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IconButton, SwipeableDrawer, Dialog, DialogTitle, List, ListItem, Divider } from '@material-ui/core'
+import { Button, IconButton, SwipeableDrawer, Dialog, DialogTitle, List, ListItem, Divider } from '@material-ui/core'
 import { MdSettings, MdLiveHelp } from 'react-icons/md'
 import suits from 'utils/js/suits'
 import values from 'utils/js/values'
@@ -49,12 +49,24 @@ function Header() {
         </List>
       </Dialog>
       <header>
-        <IconButton className='settings' onClick={() => setDialog(true)} aria-label='ajuda'>
+        <Button
+          variant='contained'
+          className='settings'
+          onClick={() => setDialog(true)}
+          aria-label='ajuda'
+          disableElevation
+        >
           <MdLiveHelp />
-        </IconButton>
-        <IconButton className='settings' onClick={() => setOpen(true)} aria-label='opções'>
+        </Button>
+        <Button
+          variant='contained'
+          className='settings'
+          onClick={() => setOpen(true)}
+          aria-label='opções'
+          disableElevation
+        >
           <MdSettings />
-        </IconButton>
+        </Button>
       </header>
     </>
   )
