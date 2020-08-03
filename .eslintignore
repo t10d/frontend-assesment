@@ -1,0 +1,7 @@
+.cache
+build
+**/node_modules/**
+/src/serviceWorker.js
+/src/store/index.js
+/src/test/**
+/mocha/**

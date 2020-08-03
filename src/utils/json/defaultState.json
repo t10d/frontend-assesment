@@ -1,0 +1,60 @@
+{
+  "settings" : {
+    "quantity": 10,
+    "visual": "real"
+  },
+  "deck": null, 
+  "result" : {
+    "list": [],
+    "ordered": [],
+    "rotated": {},
+    "best": null,
+    "fullhouse": []
+  },
+  "pivot": {
+    "value": null,
+    "suit": null
+  },
+  "cards": [
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    },
+    {
+      "value": null,
+      "suit": null
+    }
+  ]
+}
