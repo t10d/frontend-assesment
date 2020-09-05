@@ -21,6 +21,18 @@ const ShowDeck: React.FC = () => {
     cards.map((c: any) => c.code)
   );
 
+  const test = shortArray("2H", [
+    "4H",
+    "AH",
+    "JC",
+    "3S",
+    "5C",
+    "2S",
+    "QS",
+    "3H",
+    "7C",
+  ]);
+
   return (
     <div className="deck">
       <h1 className="deck__title">Page 2</h1>

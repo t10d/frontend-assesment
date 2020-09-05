@@ -10,10 +10,6 @@ const INITIAL_STATE: State = {
 
 const deckform: Reducer = (state = INITIAL_STATE, { type, payload }) =>
   produce(state, (draft) => {
-    console.log("type");
-    console.log(type);
-    console.log("payload");
-    console.log(payload);
     switch (type) {
       case c.CREATE_DECK:
         draft.fail = null;

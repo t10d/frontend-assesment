@@ -15,16 +15,12 @@ export const shortArray = (
   const valueStart = value.slice(value.indexOf(rotation[0]), value.length);
   const newValue = [...valueStart, ...valueEnd];
 
-  newDeck.sort((a, b) => {
-    return newValue.indexOf(a[0]) > newValue.indexOf(b[0]) ? 1 : -1;
+  const sortValue = newDeck.sort((a, b) => {
+    return newValue.indexOf(a[0]) < newValue.indexOf(b[0]) ? 1 : -1;
   });
-  newDeck.sort((a, b) => {
+  sortValue.sort((a, b) => {
     return newSuit.indexOf(a[1]) > newSuit.indexOf(b[1]) ? 1 : -1;
   });
 
-  console.log(rotation);
-  console.log(newSuit);
-  console.log(newValue);
-
-  return newDeck;
+  return sortValue;
 };

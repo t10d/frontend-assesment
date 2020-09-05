@@ -35,22 +35,66 @@ const DeckForm: React.FC = () => {
       <form className="form__content" onSubmit={createDeck}>
         <h2 className="form__subtitle">Cards</h2>
         <div className="form__input-group">
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
-          <input className="form__input" type="text"></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>
         </div>
         <div className="form__rotation-card">
           <h2 className="form__subtitle">Rotation Card:</h2>{" "}
-          <input className="form__input" type="text"></input>{" "}
+          <input
+            data-cy="form-input"
+            className="form__input"
+            type="text"
+          ></input>{" "}
         </div>
-        <button type="submit" className="form__submit">
+        <button data-cy="form-submit" type="submit" className="form__submit">
           Submit
         </button>
       </form>
