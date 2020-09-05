@@ -16,32 +16,9 @@ const ShowDeck: React.FC = () => {
     (state: typeof reducers) => state.showdeck
   );
 
-  console.log(
-    shortArray("6S", [
-      "2S",
-      "KS",
-      "AH",
-      "8S",
-      "4S",
-      "9S",
-      "JS",
-      "5S",
-      "6S",
-      "7S",
-      "QS",
-      "3D",
-      "1S",
-    ])
-  );
   const ordenedDeck = shortArray(
     rotation,
     cards.map((c: any) => c.code)
-  );
-  console.log(
-    shortArray(
-      rotation,
-      cards.map((c: any) => c.code)
-    )
   );
 
   return (
