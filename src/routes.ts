@@ -11,7 +11,7 @@ export type Routes = Route[];
 
 const routes: Routes = [
   { path: "/", exact: true, component: DeckForm },
-  { path: "/show_deck/:id", component: ShowDeck },
+  { path: "/deck/:id", component: ShowDeck },
 ];
 
 export default routes;
