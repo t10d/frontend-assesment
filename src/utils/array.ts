@@ -1,9 +1,10 @@
 const suit = ["H", "D", "C", "S"];
 const value = ["2", "A", "K", "Q", "J", "1", "9", "8", "7", "6", "5", "4", "3"];
 
-export const shortArray = (
+export const sortArray = (
   rotation: string,
-  OldDeck: Array<String>
+  OldDeck: Array<String>,
+  testing?: Boolean
 ): Array<String> => {
   const newDeck = OldDeck.slice();
 
@@ -18,9 +19,14 @@ export const shortArray = (
   const sortValue = newDeck.sort((a, b) => {
     return newValue.indexOf(a[0]) < newValue.indexOf(b[0]) ? 1 : -1;
   });
-  sortValue.sort((a, b) => {
+
+  if (testing) {
+    return sortValue.sort((a, b) => {
+      return newSuit.indexOf(a[1]) > newSuit.indexOf(b[1]) ? 1 : -1;
+    });
+  }
+
+  return sortValue.reverse().sort((a, b) => {
     return newSuit.indexOf(a[1]) > newSuit.indexOf(b[1]) ? 1 : -1;
   });
-
-  return sortValue;
 };

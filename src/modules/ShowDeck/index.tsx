@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { fetchCards } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
 import { reducers } from "../../store/reducers";
-import { shortArray } from "../../utils/array";
+import { sortArray } from "../../utils/array";
 import "./style.css";
 
 const ShowDeck: React.FC = () => {
@@ -16,22 +16,10 @@ const ShowDeck: React.FC = () => {
     (state: typeof reducers) => state.showdeck
   );
 
-  const ordenedDeck = shortArray(
+  const ordenedDeck = sortArray(
     rotation,
     cards.map((c: any) => c.code)
   );
-
-  const test = shortArray("2H", [
-    "4H",
-    "AH",
-    "JC",
-    "3S",
-    "5C",
-    "2S",
-    "QS",
-    "3H",
-    "7C",
-  ]);
 
   return (
     <div className="deck">
