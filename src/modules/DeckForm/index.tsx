@@ -12,9 +12,7 @@ const DeckForm: React.FC = () => {
     dispatch(createEmptyDeck());
   }, [dispatch]);
 
-  const { fail, loading, deck_id } = useSelector(
-    (state: typeof reducers) => state.deckform
-  );
+  const { deck_id } = useSelector((state: typeof reducers) => state.deckform);
 
   const createDeck = (e: SyntheticEvent) => {
     e.preventDefault();

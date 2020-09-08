@@ -14,14 +14,62 @@
 .deck__subtitle {
   color: black;
   font-size: 1rem;
+  align-self: center;
+}
+
+.deck__cards {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .deck__content {
   width: 80%;
   border: 2px solid black;
   padding: 2rem;
-  height: 80vh;
   display: flex;
   flex-direction: column;
+}
+
+.deck__fullhouse {
+  list-style: lower-alpha;
+}
+
+.card__background {
+  width: 150px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
   align-items: center;
+}
+
+.card__value,
+.card__suit {
+  margin: 0px;
+}
+
+.card__value--left {
+  align-self: baseline;
+}
+.card__value--rigth {
+  align-self: flex-end;
+}
+.card__suit {
+  font-size: 5rem;
+}
+
+.card__suit--H,
+.card__suit--D {
+  color: red;
+}
+
+.card__suit--C,
+.card__suit--S {
+  color: #000;
 }
