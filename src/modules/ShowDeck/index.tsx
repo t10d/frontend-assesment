@@ -25,7 +25,7 @@ const ShowDeck: React.FC = () => {
   const cardsCode = cards.map((c: any) => c.code);
 
   const ordenedDeck = sortArray(rotation, cardsCode);
-
+  debugger;
   const valueFullHouse = getValuesFullHouse(cardsCode);
   const allCombinations = valueFullHouse.map((e: any) => getAllCombinations(e));
 

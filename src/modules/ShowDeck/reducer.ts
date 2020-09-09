@@ -16,27 +16,14 @@ const showdeck: Reducer = (state = INITIAL_STATE, { type, payload }) =>
         draft.fail = null;
         draft.loading = true;
         return;
-
       case c.FETCH_CARDS_SUCCESS:
         draft.loading = false;
-        draft.cards = payload.piles.cards.cards;
+        const cards = payload.piles.cards.cards;
+        const rotation = cards.splice(cards.length - 1, 1);
+        draft.cards = cards;
+        draft.rotation = rotation[0].code;
         return;
       case c.FETCH_CARDS_FAIL:
-        draft.loading = false;
-        draft.fail = payload.error;
-        return;
-      case c.FETCH_ROTATION:
-        draft.fail = null;
-        draft.loading = true;
-        return;
-
-      case c.FETCH_ROTATION_SUCCESS:
-        draft.loading = false;
-        draft.rotation = payload.piles.rotation.cards[0].code
-          ? payload.piles.rotation.cards[0].code
-          : "2H";
-        return;
-      case c.FETCH_ROTATION_FAIL:
         draft.loading = false;
         draft.fail = payload.error;
         return;

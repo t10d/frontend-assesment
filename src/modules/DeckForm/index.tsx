@@ -18,12 +18,8 @@ const DeckForm: React.FC = () => {
     e.preventDefault();
     if (e.target instanceof HTMLFormElement) {
       const deck = getValuesFromForm(e.target);
-      const cards = deck
-        .slice(0, deck.length - 1)
-        .join(",")
-        .toUpperCase();
-      const rotationCard = deck[deck.length - 1].toUpperCase();
-      dispatch(saveDeck(deck_id, rotationCard, cards));
+      const cards = deck.join(",").toUpperCase();
+      dispatch(saveDeck(deck_id, cards));
     }
   };
 
